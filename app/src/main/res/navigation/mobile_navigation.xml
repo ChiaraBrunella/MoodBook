@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.moodbook.ui.home.StatisticsFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_moodtracker"
+        android:name="com.example.moodbook.ui.mood.MoodFragment"
+        android:label="@string/menu_moodtracker"
+        tools:layout="@layout/fragment_moodtracker" />
+
+    <fragment
+        android:id="@+id/nav_ToDo"
+        android:name="com.example.moodbook.ui.todo.ToDoFragment"
+        android:label="@string/menu_ToDo"
+        tools:layout="@layout/fragment_todo" />
+
+    <fragment
+        android:id="@+id/nav_Statistiche"
+        android:name="com.example.moodbook.ui.statistics.StatisticsFragment"
+        android:label="@string/menu_statistiche"
+        tools:layout="@layout/fragment_statistics" />
+</navigation>
