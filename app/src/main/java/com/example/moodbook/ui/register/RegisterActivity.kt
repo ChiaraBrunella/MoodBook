@@ -19,6 +19,8 @@ import com.example.moodbook.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.FirebaseDatabase.*
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
@@ -33,7 +35,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegisterBinding
     private var registerViewModel: RegisterViewModel? = null
     private var mAuth: FirebaseAuth? = null
-    private var db: FirebaseFirestore? = null
+    private lateinit var db: FirebaseFirestore
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
