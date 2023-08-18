@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "756010439544",
+    "project_id": "moodbook-be362",
+    "storage_bucket": "moodbook-be362.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756010439544:android:fd29dcdc9bdf147905ee8d",
+        "android_client_info": {
+          "package_name": "com.example.moodbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756010439544-6v2vhjb3g78dcsbrboodg1bi8avbadm3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC-343ERFcn9wmBUYlvE2jC2mJW7bJY6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756010439544-6v2vhjb3g78dcsbrboodg1bi8avbadm3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
