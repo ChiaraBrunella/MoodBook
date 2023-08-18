@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_mood"
             android:title="@string/menu_moodtracker" />
         <item
+            android:id="@+id/nav_Habits"
+            android:icon="@drawable/ic_habits"
+            android:title="@string/menu_habitstracker" />
+        <item
             android:id="@+id/nav_ToDo"
             android:icon="@drawable/ic_todo"
             android:title="@string/menu_ToDo" />

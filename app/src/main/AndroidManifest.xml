@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoodBook"
         tools:targetApi="31">
+        <!-- Main Splash Page -->
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".MainActivity"
@@ -23,15 +32,17 @@
         <!-- Login Page -->
         <activity android:name=".LoginActivity"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
         <!-- Registration Page -->
         <activity
             android:name=".RegisterActivity" />
+        <!-- Mood Page -->
+
+        <activity android:name=".ui.mood.AddMoodActivity" />
+        <!-- habits Page -->
+
+        <activity android:name=".ui.habits.NewHabitActivity" />
     </application>
 
 </manifest>

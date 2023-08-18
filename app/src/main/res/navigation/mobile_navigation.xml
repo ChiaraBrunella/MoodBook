@@ -18,6 +18,13 @@
         tools:layout="@layout/fragment_moodtracker" />
 
     <fragment
+        android:id="@+id/nav_Habits"
+        android:name="com.example.moodbook.ui.habits.HabitsFragment"
+        android:label="@string/menu_habitstracker"
+        tools:layout="@layout/fragment_habits" />
+
+
+    <fragment
         android:id="@+id/nav_ToDo"
         android:name="com.example.moodbook.ui.todo.ToDoFragment"
         android:label="@string/menu_ToDo"

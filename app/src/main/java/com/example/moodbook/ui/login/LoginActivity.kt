@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -14,9 +15,11 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
     private var loginViewModel: LoginViewModel? = null
+    private lateinit var db: FirebaseFirestore
     private var mAuth: FirebaseAuth? = null
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +28,8 @@ class LoginActivity : AppCompatActivity() {
             LoginViewModel::class.java
         )
 
-        //initialize cloud firestore database
+        //initialize cloud firestore database and authentication
+        db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
         val usernameEditText = findViewById<EditText>(R.id.username)
         val passwordEditText = findViewById<EditText>(R.id.password)
@@ -94,12 +98,26 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this@LoginActivity, "Login Failed", Toast.LENGTH_SHORT).show()
             return
         }
-        val welcome = "Welcome " + user.email + "!"
-        Toast.makeText(applicationContext, welcome, Toast.LENGTH_LONG).show()
-        val i = Intent(applicationContext, MainActivity::class.java)
-        startActivity(i)
-    }
+        val uid = user!!.uid
+        db!!.collection("users").document(uid).get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val docsnap = task.result
+                val name = docsnap.getString("Name")
+                Log.i("docsnap", name.toString())
+                val country = docsnap.getString("Country")
+                val dob = docsnap.getString("DOB")
+                val gender = docsnap.getString("Gender")
 
+                val welcome = "Welcome " + user.email + "!"
+                Toast.makeText(applicationContext, welcome, Toast.LENGTH_LONG).show()
+                val i = Intent(applicationContext, MainActivity::class.java)
+                startActivity(i)
+            }
+
+
+        }
+
+    }
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }

@@ -1,6 +1,7 @@
 package com.example.moodbook.ui.profile
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -18,7 +19,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
+import android.content.SharedPreferences
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
@@ -112,8 +113,15 @@ class ProfileFragment : Fragment() {
             b.setCancelable(true)
             b.setNegativeButton("Yes") { dialog, which ->
                 dialog.cancel()
-                val i = Intent(getActivity(), LoginActivity::class.java)
+                val i = Intent(activity, LoginActivity::class.java)
                 startActivity(i)
+                /*val sharedPref =
+                    this.getActivity()?.getSharedPreferences("com.example.moodbook", Context.MODE_PRIVATE)
+                val prefEditor = sharedPref?.edit()
+                val number = sharedPref?.getInt("isLogged", 0)
+                prefEditor?.putInt("isLogged", 0)
+                    prefEditor?.commit()
+                Log.i("isLogged:, ", number.toString())*/
             }
 
             b.setPositiveButton("No") { dialog, which -> dialog.dismiss() }
@@ -218,19 +226,6 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE && resultCode == AppCompatActivity.RESULT_OK && data != null) {
-            imageUri = data.data!!
-            try {
-                val bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, imageUri)
-                profilepic!!.setImageBitmap(bitmap)
-                uploadFile(bitmap)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-    }
 
     private fun getFileExtension(uri: Uri): String? {
 

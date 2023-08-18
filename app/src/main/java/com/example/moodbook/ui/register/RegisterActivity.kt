@@ -57,7 +57,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         this.gender.setAdapter(adapter)
 
         // Get access to all user input components on UI
-       nameEditText = binding.name
+        nameEditText = binding.name
         usernameEditText = binding.username
         passwordEditText = binding.password
         DOBEditText = binding.DOB
@@ -74,7 +74,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                     nameEditText.setError(getString(registerFormState.nameError!!))
                 }
                 if (registerFormState.usernameError != null) {
-                   usernameEditText.setError(getString(registerFormState.usernameError!!))
+                    usernameEditText.setError(getString(registerFormState.usernameError!!))
                 }
                 if (registerFormState.passwordError != null) {
                     passwordEditText.setError(getString(registerFormState.passwordError!!))
@@ -184,9 +184,22 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(this@RegisterActivity, "Registration Failed", Toast.LENGTH_SHORT).show()
             return
         }
-        val welcome = "Welcome " + user.email + "!"
-        Toast.makeText(applicationContext, welcome, Toast.LENGTH_LONG).show()
-        val i = Intent(applicationContext, MainActivity::class.java)
-        startActivity(i)
+        val uid = user!!.uid
+        db!!.collection("users").document(uid).get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val docsnap = task.result
+                val name = docsnap.getString("Name")
+                Log.i("docsnap", name.toString())
+                val country = docsnap.getString("Country")
+                val dob = docsnap.getString("DOB")
+                val gender = docsnap.getString("Gender")
+
+                val welcome = "Welcome " + name + "!"
+                Toast.makeText(applicationContext, welcome, Toast.LENGTH_LONG).show()
+                val i = Intent(applicationContext, MainActivity::class.java)
+                startActivity(i)
+            }
+
+        }
     }
 }
