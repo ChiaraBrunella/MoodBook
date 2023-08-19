@@ -54,7 +54,7 @@ class MoodFragment : Fragment() {
             startActivity(i)
         })
         db.collection("users").document(user!!).collection("moodlog")
-            .orderBy("id", Query.Direction.DESCENDING).addSnapshotListener(
+            .orderBy("date", Query.Direction.DESCENDING).addSnapshotListener(
                 EventListener { docsnapshot, e ->
                     date.clear()
                     for (snapshot in docsnapshot!!) {
@@ -135,10 +135,6 @@ class MoodFragment : Fragment() {
                     vmood.setImageResource(R.drawable.sleepy)
                 }
 
-
-                if (mood[position].equals("sick", ignoreCase = true)) {
-                    vmood.setImageResource(R.drawable.sick)
-                }
             }
             return row
         }

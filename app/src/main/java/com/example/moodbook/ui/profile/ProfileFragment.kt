@@ -75,10 +75,10 @@ class ProfileFragment : Fragment() {
 
         first_name_txt = binding.firstnameTextview
         first_name_txt.getBackground().alpha = 75
-       /* profileViewModel.first_name_txt.observe(viewLifecycleOwner) {
-           first_name_txt.text = it
-            Log.i("create first name", first_name_txt.text.toString())
-       }*/
+        /* profileViewModel.first_name_txt.observe(viewLifecycleOwner) {
+            first_name_txt.text = it
+             Log.i("create first name", first_name_txt.text.toString())
+        }*/
         country_txt =binding.countryTextview
         country_txt.getBackground().alpha = 75
         profileViewModel.country_txt.observe(viewLifecycleOwner) {
@@ -135,7 +135,7 @@ class ProfileFragment : Fragment() {
             startActivity(
                 Intent.createChooser(gallery, "Select Picture"),
                 //ProfileActivity.PICK_IMAGE
-                  )
+            )
             imageUri = gallery.data!!
             try {
                 val bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, imageUri)

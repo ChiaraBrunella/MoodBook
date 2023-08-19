@@ -63,15 +63,6 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="*In order to add mood you must select a date and emoji"
-                    android:textAlignment="center"
-                    android:textSize="10dp"
-                    android:textColor="#B71C1C"/>
-
-
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -167,112 +158,55 @@
                     android:layout_gravity="center"
                     android:padding="0dp">
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/happy"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:background="@drawable/happy"/>
+                        android:foreground="@drawable/happy"/>
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/sad"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/sad"
+                        android:foreground="@drawable/sad"
                         android:layout_weight="1" />
-                    <Button
-                        android:id="@+id/cool"
+                    <ImageButton
+                        android:id="@+id/neutral"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/neutral"
+                        android:foreground="@drawable/neutral"
                         android:layout_weight="1" />
-                    <Button
-                        android:id="@+id/lovely"
+                    <ImageButton
+                        android:id="@+id/depressed"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/depressed"
+                        android:foreground="@drawable/depressed"
                         android:layout_weight="1"/>
-                    <Button
-                        android:id="@+id/scared"
+                    <ImageButton
+                        android:id="@+id/angry"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="@drawable/angry"
                         android:layout_weight="1"/>
-                    <Button
-                        android:id="@+id/nerd"
+                    <ImageButton
+                        android:id="@+id/flushed"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
                         android:background="@drawable/flushed"/>
-                    <Button
-                        android:id="@+id/sick"
+                    <ImageButton
+                        android:id="@+id/sleepy"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:background="@drawable/sick"/>
+                        android:background="@drawable/sleepy"/>
                 </LinearLayout>
 
 
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                android:layout_gravity="center_horizontal"
-                android:padding="10dp">
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="0dp">
-
-                    <Button
-                        android:id="@+id/neutral"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"/>
-
-
-                    <Button
-                        android:id="@+id/flushed"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1" />
-                    <Button
-                        android:id="@+id/depressed"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-
-                        android:layout_weight="1" />
-                    <Button
-                        android:id="@+id/angel"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-
-                        android:layout_weight="1"/>
-                    <Button
-                        android:id="@+id/sleepy"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/sick"
-                        android:layout_weight="1"/>
-                    <Button
-                        android:id="@+id/angry"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        />
-                    <Button
-                        android:id="@+id/devil"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"/>
-                    />
-                </LinearLayout>
 
             </LinearLayout>
             <LinearLayout
@@ -294,7 +228,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:background="@drawable/textview_outline">
+               >
 
                 <EditText
                     android:id="@+id/descbox"
@@ -306,7 +240,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_marginTop="20dp">
 
                 <Button
                     android:id="@+id/addmood"
@@ -317,10 +252,7 @@
                     android:textSize="20sp"
                     android:enabled="false"
                     android:textColor="#050505"
-                    android:layout_gravity="bottom"/>
+                    android:layout_gravity="center_horizontal"/>
             </LinearLayout>
         </LinearLayout>
-
-
-    </LinearLayout>
 </ScrollView>

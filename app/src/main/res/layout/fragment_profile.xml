@@ -2,17 +2,15 @@
 <ScrollView
 xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center_vertical"
     android:orientation="vertical"
-    android:background = "#dfecec"
+    android:background ="@color/beige"
     >
 
     <ImageView
@@ -41,6 +39,8 @@ android:layout_height="fill_parent">
         android:layout_gravity="center_horizontal"
         android:src="@drawable/defaultprofile">
     </de.hdodenhof.circleimageview.CircleImageView>
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@ android:layout_height="fill_parent">
                 android:background="#BCFFFFFF"
                 android:paddingLeft="15px"
                 android:text="Name"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:id="@+id/firstname_textview"
@@ -78,7 +78,7 @@ android:layout_height="fill_parent">
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:background="#BCFFFFFF"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         </LinearLayout>
 
@@ -96,7 +96,7 @@ android:layout_height="fill_parent">
                 android:gravity="center_horizontal"
                 android:paddingLeft="15px"
                 android:text="Date of Birth"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:id="@+id/dob_textview"
@@ -104,7 +104,7 @@ android:layout_height="fill_parent">
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:background="#BCFFFFFF"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </LinearLayout>
 
         <LinearLayout
@@ -121,7 +121,7 @@ android:layout_height="fill_parent">
                 android:paddingLeft="15px"
                 android:gravity="center_horizontal"
                 android:text="Country"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:id="@+id/country_textview"
@@ -129,7 +129,7 @@ android:layout_height="fill_parent">
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:background="#BCFFFFFF"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -145,7 +145,7 @@ android:layout_height="fill_parent">
                 android:paddingLeft="15px"
                 android:gravity="center_horizontal"
                 android:text="Gender"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:id="@+id/gender_textview"

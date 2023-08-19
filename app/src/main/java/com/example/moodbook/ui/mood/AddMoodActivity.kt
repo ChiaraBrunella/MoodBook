@@ -71,15 +71,6 @@ class AddMoodActivity : AppCompatActivity() {
         })
 
 
-        binding.sick.setOnClickListener(View.OnClickListener {
-            moodtype = "sick"
-            Toast.makeText(this@AddMoodActivity, "I feel sick", Toast.LENGTH_SHORT).show()
-            if (boolselect == 1) {
-                binding.addmood.setEnabled(true)
-            }
-        })
-
-
         binding.sleepy.setOnClickListener(View.OnClickListener {
             moodtype = "sleepy"
             Toast.makeText(this@AddMoodActivity, "I feel sleepy", Toast.LENGTH_SHORT).show()
@@ -87,6 +78,9 @@ class AddMoodActivity : AppCompatActivity() {
                 binding.addmood.setEnabled(true)
             }
         })
+
+
+
         binding.neutral.setOnClickListener(View.OnClickListener {
             moodtype = "neutral"
             Toast.makeText(this@AddMoodActivity, "I feel neutral", Toast.LENGTH_SHORT).show()
@@ -97,7 +91,7 @@ class AddMoodActivity : AppCompatActivity() {
 
         binding.flushed.setOnClickListener(View.OnClickListener {
             moodtype = "flushed"
-            Toast.makeText(this@AddMoodActivity, "I feel embarrassed", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@AddMoodActivity, "I feel flushed", Toast.LENGTH_SHORT).show()
             if (boolselect == 1) {
                 binding.addmood.setEnabled(true)
             }
@@ -139,7 +133,8 @@ class AddMoodActivity : AppCompatActivity() {
                 )
                 moodid++
                 val j = Intent(applicationContext, MoodFragment::class.java)
-                startActivity(j)
+                //startActivity(j)
+                finish()
             }
         })
     }
@@ -151,7 +146,9 @@ class AddMoodActivity : AppCompatActivity() {
         user["description"] = desc
         user["moodtype"] = mood
         db.collection("users").document(UID!!).collection("moodlog").document().set(user)
-            .addOnSuccessListener(this) { Log.w("SUCCESS", "DocumentSnapshot added with ID:") }
+            .addOnSuccessListener(this) { Log.w("SUCCESS", "DocumentSnapshot added with ID:")
+                Toast.makeText(this@AddMoodActivity, "mood '"+ mood + "' successfully added", Toast.LENGTH_SHORT).show()
+            }
             .addOnFailureListener(this) { e ->
                 Log.w(
                     "AddingMood Failed",

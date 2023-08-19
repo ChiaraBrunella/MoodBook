@@ -8,6 +8,16 @@
     <color name="teal_700">#28B2D5</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="purple_200">#0F9D58</color>
+    <color name="purple_500">#0F9D58</color>
+    <color name="grey">#E4E2E2</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="red">#F44336</color>
     <color name="upArrow">#CAFFF4</color>
     <color name="downArrow">#FFFCBD</color>
+    <color name="happy">#FFA726</color>
+    <color name="beige">#FFE8E3E3</color>
+    <color name="neutral">#66BB6A</color>
+    <color name="angry">#EF5350</color>
+    <color name="sad">#29B6F6</color>
 </resources>

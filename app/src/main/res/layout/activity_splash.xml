@@ -37,6 +37,7 @@
         android:text="emotions recollected in tranquillity"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/blue"
         android:textColorHighlight="#000F0F0F"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
