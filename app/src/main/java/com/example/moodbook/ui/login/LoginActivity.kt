@@ -1,7 +1,10 @@
 package com.example.moodbook
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -12,10 +15,10 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+
 
 class LoginActivity : AppCompatActivity() {
     private var loginViewModel: LoginViewModel? = null
@@ -34,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
         val usernameEditText = findViewById<EditText>(R.id.username)
         val passwordEditText = findViewById<EditText>(R.id.password)
         val loginButton = findViewById<Button>(R.id.login)
-        val signUpText = findViewById<Button>(R.id.register)
+        val signUpText = findViewById<EditText>(R.id.register)
         loginViewModel!!.loginFormState.observe(this, Observer<LoginFormState?> { loginFormState ->
             if (loginFormState == null) {
                 return@Observer
@@ -108,6 +111,16 @@ class LoginActivity : AppCompatActivity() {
                 val dob = docsnap.getString("DOB")
                 val gender = docsnap.getString("Gender")
 
+                /*
+                // memorizzo user-id in shared preferences per non richiedere ulteriormente il login
+                val sharedPref =
+                    this.getSharedPreferences("com.example.moodbook", Context.MODE_PRIVATE)
+                val prefEditor = sharedPref?.edit()
+                prefEditor?.putString("loggedUser", uid)
+                prefEditor?.apply()
+                Log.i("in Login: loggedUser", uid)
+
+                */
                 val welcome = "Welcome " + user.email + "!"
                 Toast.makeText(applicationContext, welcome, Toast.LENGTH_LONG).show()
                 val i = Intent(applicationContext, MainActivity::class.java)

@@ -1,5 +1,6 @@
 package com.example.moodbook.ui.profile
 
+import android.app.Activity.RESULT_OK
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
@@ -25,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.moodbook.LoginActivity
 import com.example.moodbook.R
 import com.example.moodbook.databinding.FragmentProfileBinding
@@ -103,9 +105,9 @@ class ProfileFragment : Fragment() {
         mStorageRef = FirebaseStorage.getInstance().getReference(user!!.uid)
         updateLabels()
         if (user!!.photoUrl != null) {
-            //  Glide.with(this)
-            //   .load(user!!.photoUrl)
-            //   .into(profilepic)
+            Glide.with(this)
+            .load(user!!.photoUrl)
+            .into(profilepic)
         }
         logout.setOnClickListener(View.OnClickListener {
             val b = AlertDialog.Builder(it.getContext())
@@ -114,43 +116,34 @@ class ProfileFragment : Fragment() {
             b.setNegativeButton("Yes") { dialog, which ->
                 dialog.cancel()
                 val i = Intent(activity, LoginActivity::class.java)
-                startActivity(i)
-                /*val sharedPref =
+               /* val sharedPref =
                     this.getActivity()?.getSharedPreferences("com.example.moodbook", Context.MODE_PRIVATE)
                 val prefEditor = sharedPref?.edit()
-                val number = sharedPref?.getInt("isLogged", 0)
-                prefEditor?.putInt("isLogged", 0)
-                    prefEditor?.commit()
-                Log.i("isLogged:, ", number.toString())*/
+                val userId = sharedPref?.getString("isLogged", null)
+                prefEditor?.putString("isLogged", null)
+                prefEditor?.commit()*/
+                startActivity(i)
+
+
             }
 
             b.setPositiveButton("No") { dialog, which -> dialog.dismiss() }
             val a = b.create()
             a.show()
+
         })
         profilepic.setOnClickListener(View.OnClickListener {
             val gallery = Intent()
             gallery.type = "image/*"
             gallery.action = Intent.ACTION_GET_CONTENT
-            startActivity(
-                Intent.createChooser(gallery, "Select Picture"),
-                //ProfileActivity.PICK_IMAGE
-            )
-            imageUri = gallery.data!!
-            try {
-                val bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, imageUri)
-                profilepic!!.setImageBitmap(bitmap)
-                uploadFile(bitmap)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
+            startActivityForResult(Intent.createChooser(gallery, "Select Picture"), PICK_IMAGE)
         })
         edit_btn.setOnClickListener(View.OnClickListener {
             val editProfileDialogView = layoutInflater.inflate(R.layout.edit_profile_dialog, null)
             val name = editProfileDialogView.findViewById<EditText>(R.id.name)
             val dob = editProfileDialogView.findViewById<EditText>(R.id.dob)
             val country = editProfileDialogView.findViewById<EditText>(R.id.country)
-            // final EditText gender = editProfileDialogView.findViewById(R.id.genderlabel);
+            val gender:TextView= binding.genderlabel
             val uid = user!!.uid
             dob.setOnClickListener {
                 val cal = Calendar.getInstance()
@@ -226,7 +219,19 @@ class ProfileFragment : Fragment() {
         }
     }
 
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+            imageUri = data.data!!
+            try {
+                val bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, imageUri)
+                profilepic!!.setImageBitmap(bitmap)
+                uploadFile(bitmap)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+    }
     private fun getFileExtension(uri: Uri): String? {
 
         val cR = context?.contentResolver

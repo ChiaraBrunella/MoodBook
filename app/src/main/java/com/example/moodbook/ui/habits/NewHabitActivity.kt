@@ -57,8 +57,9 @@ class NewHabitActivity : AppCompatActivity() {
         newHabit.setOnClickListener(View.OnClickListener {
             addHabit()
             val i = Intent(applicationContext, HabitsFragment::class.java)
-            //startActivity(i)
-            finish()
+            i.putExtra("num_fragment", 3);
+            startActivity(i)
+
         })
     }
 

@@ -50,19 +50,18 @@ class SplashActivity : AppCompatActivity() {
             val p =  listOf<Pair<View, String>> (
            Pair<View, String>(image, "logoimage"))
             val o = ActivityOptions.makeSceneTransitionAnimation(this@SplashActivity, p[0])
-            /*val sharedPref = getSharedPreferences("com.example.moodbook", Context.MODE_PRIVATE)
+           /*val sharedPref = getSharedPreferences("com.example.moodbook", Context.MODE_PRIVATE)
             val prefEditor = sharedPref.edit()
-            val number = sharedPref.getInt("isLogged", 0)
-            if (number == 0) {*/
-                //Open the login activity and set this so that next it value is 1 then this conditin will be false.
+            val sp_id = sharedPref.getString("loggedUser", null)
+            if (sp_id == null) {
+                //Open the login activity and set this so that next it value is 1 then this conditin will be false.*/
             startActivity(i, o.toBundle())
-               /* prefEditor.putInt("isLogged", 1)
-                prefEditor.commit()
-                Log.i("isLogged:, ", number.toString())
+            /*   Log.i("per login: isLogged:, ", sp_id.toString())
             } else {
                 //Open this Home activity
-                Log.i("isLogged:, ", number.toString())
+                Log.i("per home: isLogged:, ", sp_id.toString())
                 startActivity(i_logged, o.toBundle())
+
             }*/
 
         }, SPLASH_SCREEN.toLong())

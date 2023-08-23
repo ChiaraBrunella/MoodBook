@@ -12,11 +12,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.moodbook.MainActivity
 import com.example.moodbook.R
 import com.example.moodbook.databinding.ActivityAddmoodBinding
 import com.example.moodbook.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+
 import java.util.Calendar
 
 class AddMoodActivity : AppCompatActivity() {
@@ -132,9 +134,10 @@ class AddMoodActivity : AppCompatActivity() {
                     moodid
                 )
                 moodid++
-                val j = Intent(applicationContext, MoodFragment::class.java)
-                //startActivity(j)
-                finish()
+                val j = Intent(v.getContext(), MainActivity::class.java)
+                j.putExtra("num_fragment", 2);
+                startActivity(j)
+
             }
         })
     }

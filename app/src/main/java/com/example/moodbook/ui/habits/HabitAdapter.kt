@@ -35,11 +35,8 @@ internal class HabitAdapter(
             notifyItemChanged(position)
         }
         holder.downButton.setOnClickListener {
-            Toast.makeText(
-                mContext,
-                habitList[position].habitName,
-                Toast.LENGTH_SHORT
-            ).show()
+            habitList[position].decrementProgress()
+            notifyItemChanged(position)
         }
         holder.progress.max = habitList[position].maxProgress
         holder.progress.setProgress(habitList[position].progress, true)

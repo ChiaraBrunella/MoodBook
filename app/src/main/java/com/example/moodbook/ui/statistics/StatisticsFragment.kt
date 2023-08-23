@@ -1,19 +1,25 @@
 package com.example.moodbook.ui.statistics
 
-import android.annotation.SuppressLint
+
+import android.animation.ObjectAnimator
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.graphics.Typeface.*
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.moodbook.R
 import com.example.moodbook.databinding.FragmentStatisticsBinding
 import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -25,8 +31,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
 
-
 class StatisticsFragment : Fragment() {
+
 
 
     private var depressedPercent: Float = 0F
@@ -50,6 +56,18 @@ class StatisticsFragment : Fragment() {
     private var flushedCount: Int = 0
     private var neutralCount: Int = 0
     private var sleepyCount: Int = 0
+
+
+    // variable for our bar data.
+    private lateinit var barData: BarData
+
+    // variable for our bar data set.? = null
+
+    // array list for storing entries.
+    lateinit var barEntriesArrayList: ArrayList<BarEntry>
+    lateinit var arrayBars: Array <ProgressBar>
+    private lateinit var arrayPercentage: Array <Float>
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -123,6 +141,72 @@ class StatisticsFragment : Fragment() {
                             Log.d("", "happy perc: " + happyPercent)
                             Log.d("", "mood size: " + mood.size)
 
+
+                            // add a lot of colors to list
+                            val colors: ArrayList<Int> = ArrayList()
+                            colors.add(resources.getColor(R.color.happy))
+                            colors.add(resources.getColor(R.color.sad))
+                            colors.add(resources.getColor(R.color.yellow))
+                            colors.add(resources.getColor(R.color.angry))
+                            colors.add(resources.getColor(R.color.purple_700))
+                            colors.add(resources.getColor(R.color.neutral))
+                            colors.add(resources.getColor(R.color.upArrow))
+                            /* bar chart
+                            // initializing variable for bar chart.
+                            barChart = binding.barChart;
+
+                            // creating a new array list
+                            barEntriesArrayList = ArrayList <BarEntry>();
+
+                            // adding new entry to our array list with bar
+                            // entry and passing x and y axis value to it.
+                            barEntriesArrayList.add( BarEntry(1f, happyPercent))
+                            barEntriesArrayList.add(BarEntry(2f, sadPercent))
+                            barEntriesArrayList.add(BarEntry(3f, flushedPercent))
+                            barEntriesArrayList.add( BarEntry(4f, angryPercent))
+                            barEntriesArrayList.add(BarEntry(5f, depressedPercent))
+                            barEntriesArrayList.add(BarEntry(6f, neutralPercent))
+                            barEntriesArrayList.add(BarEntry(6f, sleepyPercent))
+
+                            // creating a new bar data set.
+                            barDataSet =  BarDataSet(barEntriesArrayList, "moods");
+
+                            // creating a new bar data and
+                            // passing our bar data set.
+                            barData = BarData(barDataSet);
+
+                            // below line is to set data
+                            // to our bar chart.
+                            barChart.setData(barData);
+
+                            // adding color to our bar data set.
+                            barDataSet.setColors(colors);
+
+                            // setting text color.
+                            barDataSet!!.setValueTextColor(Color.BLACK);
+
+                            // setting text size
+                            barDataSet.setValueTextSize(16f);
+                            barChart.getDescription().setEnabled(false);*/
+
+                            binding.progbarHappy.max = 100
+
+                            arrayBars = arrayOf(binding.progbarHappy,binding.progbarSad, binding.progbarFlushed, binding.progbarAngry, binding.progbarDepressed, binding.progbarNeutral, binding.progbarSleepy)
+                            arrayPercentage = arrayOf(happyPercent, sadPercent, flushedPercent, angryPercent, depressedPercent, neutralPercent, sleepyPercent)
+                            for (bar in arrayBars){
+                                val progressDrawable: Drawable =
+                                   bar.getProgressDrawable().mutate()
+                                progressDrawable.setColorFilter(colors[arrayBars.indexOf(bar)], PorterDuff.Mode.SRC_IN)
+                                bar.setProgressDrawable(progressDrawable)
+
+                                ObjectAnimator.ofInt(bar, "progress", 0, arrayPercentage[arrayBars.indexOf(bar)].toInt())
+                                    .setDuration(500)
+                                    .start()
+                            }
+
+
+
+                            // pie chart
                             val pieChart = binding.piechartMood
         // on below line we are setting user percent value,
         // setting description as enabled and offset for pie chart
@@ -187,15 +271,6 @@ class StatisticsFragment : Fragment() {
         dataSet.iconsOffset = MPPointF(0f, 40f)
         dataSet.selectionShift = 5f
 
-        // add a lot of colors to list
-        val colors: ArrayList<Int> = ArrayList()
-        colors.add(resources.getColor(R.color.happy))
-        colors.add(resources.getColor(R.color.sad))
-        colors.add(resources.getColor(R.color.yellow))
-        colors.add(resources.getColor(R.color.angry))
-        colors.add(resources.getColor(R.color.purple_700))
-        colors.add(resources.getColor(R.color.neutral))
-        colors.add(resources.getColor(R.color.upArrow))
 
 
         // on below line we are setting colors.
@@ -231,6 +306,5 @@ class StatisticsFragment : Fragment() {
                         return curmoodid
                     }
                 }
-
 
 }

@@ -45,4 +45,10 @@ class Habit(
         setChanged()
         notifyObservers(this)
     }
+
+    fun decrementProgress() {
+        progress -= 1
+        setChanged()
+        notifyObservers(this)
+    }
 }
