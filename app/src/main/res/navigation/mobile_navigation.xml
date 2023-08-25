@@ -16,6 +16,9 @@
         <action
             android:id="@+id/nav_home_to_nav_habitracker"
             app:destination="@id/nav_Habits" />
+        <action
+            android:id="@+id/nav_home_to_nav_toDo"
+            app:destination="@id/nav_ToDo" />
 
 </fragment>
 

@@ -150,7 +150,7 @@ class StatisticsFragment : Fragment() {
                             colors.add(resources.getColor(R.color.angry))
                             colors.add(resources.getColor(R.color.purple_700))
                             colors.add(resources.getColor(R.color.neutral))
-                            colors.add(resources.getColor(R.color.upArrow))
+                            colors.add(resources.getColor(R.color.sleepy))
                             /* bar chart
                             // initializing variable for bar chart.
                             barChart = binding.barChart;

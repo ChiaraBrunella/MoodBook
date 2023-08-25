@@ -1,6 +1,7 @@
 package com.example.moodbook.ui.home
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,11 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import com.example.moodbook.R
 import com.example.moodbook.databinding.FragmentHomeBinding
-import com.example.moodbook.ui.habits.Habit
-import com.example.moodbook.ui.habits.HabitsFragment
+import com.example.moodbook.ui.habits.NewHabitActivity
+import com.example.moodbook.ui.mood.AddMoodActivity
+import com.example.moodbook.ui.todo.ToDoFragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -20,10 +24,6 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
 
 
 class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
@@ -132,11 +132,60 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
 
                     // set tasks cardview data
                     val lvTasks = binding.todayTasksList
+                    db!!.collection("users").document(mAuth!!.currentUser!!.uid).collection("taskLog")
+                            .get()
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    for (document in task.result) {
+                                        val taskItem = document.data
+                                        val taskName = taskItem["taskname"] as String?
+                                        val complete = taskItem["completed"] as Boolean
+                                        val t = com.example.moodbook.ui.todo.Task()
+                                        t.setCompleted()
+                                        t.taskName = taskName.toString()
+                                        t.taskId = document.id
+                                        Log.i("taskname", taskName.toString())
+                                        if (!complete) {
+                                            tasksList.add(taskName.toString())
+                                            Log.i("taskname aggiunto a incompleted list", taskName.toString())
+                                            Log.i("incompleted list lenght", tasksList.size.toString())
+                                        }
+                                    }
+                                    var taskList: MutableList<String?> = ArrayList()
+                                    taskList.clear()
+                                    taskList.addAll(tasksList)
+                                    val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                                        lvTasks.getContext(), android.R.layout.simple_list_item_1, taskList)
+                                    lvTasks.setAdapter(arrayAdapter)
+                                    lvTasks.divider = null
+
+                                    arrayAdapter.notifyDataSetChanged()
+
+
+                                }
+                            }
 
 
 
 
                 })
+
+        binding.addMood.setOnClickListener(View.OnClickListener {
+            val i = Intent(getActivity(), AddMoodActivity::class.java)
+            startActivity(i)
+        })
+
+        binding.addHabit.setOnClickListener(View.OnClickListener {
+            val i = Intent(context, NewHabitActivity::class.java)
+            startActivity(i)
+        })
+
+        binding.addToDo.setOnClickListener(View.OnClickListener {
+
+            /*val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
+            ft.replace(R.id.mobile_navigation, ToDoFragment(), "NewFragmentTag")
+            ft.commit()*/
+            findNavController(this).navigate(R.id.nav_home_to_nav_toDo);})
         return root
     }
 
@@ -146,23 +195,6 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                 val habitItem = document.data
                 val habitName = habitItem["Habit Name"] as String?
 
-                //Log.d(HabitsFragment.TAG, document.id + "=>" + document.data)
-                /*val endDate = Calendar.getInstance()
-                val startDate = Calendar.getInstance()
-                var date1: Date? = null
-                var date2: Date? = null
-                try {
-                    date1 = SimpleDateFormat("MM/dd/yyyy").parse(document.getString("Start Date"))
-                    date2 = SimpleDateFormat("MM/dd/yyyy").parse(document.getString("End Date"))
-                } catch (e: ParseException) {
-                    e.printStackTrace()
-                }
-                startDate.time = date1
-                endDate.time = date2
-
-                )
-*/
-                //habitsList.add(document.getString("Habit Name"))
                 habitsList.add(habitName)
                 Log.d( "habit added: ", habitName.toString())
             initHabitslistView()

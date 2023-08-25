@@ -306,7 +306,7 @@
                         android:id="@+id/tv_happy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="happy"
+                        android:text="@string/happy"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
@@ -329,7 +329,7 @@
                         android:id="@+id/tv_neutral"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="neutral"
+                        android:text="@string/neutral"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
@@ -353,7 +353,7 @@
                         android:id="@+id/tv_depressed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="depressed"
+                        android:text="@string/depressed"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
@@ -377,7 +377,7 @@
                         android:id="@+id/tv_angry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="angry"
+                        android:text="@string/angry"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
@@ -400,7 +400,7 @@
                         android:id="@+id/tv_sad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="sad"
+                        android:text="@string/sad"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
@@ -424,7 +424,7 @@
                         android:id="@+id/tv_flushed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="flushed"
+                        android:text="@string/flushed"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
@@ -441,14 +441,14 @@
                     <View
                         android:layout_width="15dp"
                         android:layout_height="match_parent"
-                        android:background="@color/upArrow"/>
+                        android:background="@color/sleepy"/>
 
                     <!--Text view to display sleepy text -->
                     <TextView
                         android:id="@+id/tv_sleepy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="sleepy"
+                        android:text="@string/sleepy"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>

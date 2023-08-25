@@ -22,7 +22,7 @@
         android:layout_height="55dp"
         android:contentDescription="@string/habit_yes"
         android:src="@android:drawable/arrow_up_float"
-        android:background="@color/upArrow"
+        android:background="@color/sleepy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

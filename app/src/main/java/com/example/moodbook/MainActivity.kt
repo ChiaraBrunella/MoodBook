@@ -59,6 +59,9 @@ open class MainActivity : AppCompatActivity() {
             }  else if (num_fragment == 3) {
                 navController.navigate(R.id.nav_home_to_nav_habitracker);
             }
+            else if (num_fragment == 4) {
+                navController.navigate(R.id.nav_home_to_nav_toDo);
+            }
 
             // recupero da splash activity id dell'utente loggato
             user_id = extras.getString("loggedUser").toString()

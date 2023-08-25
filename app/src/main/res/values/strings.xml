@@ -69,6 +69,13 @@
     <string name="today_habits">your habits</string>
     <string name="today_tasks">your tasks</string>
     <string name="add_today_toDo">add new task</string>
+    <string name="happy">happy</string>
+    <string name="neutral">neutral</string>
+    <string name="depressed">depressed</string>
+    <string name="angry">angry</string>
+    <string name="sad">sad</string>
+    <string name="flushed">flushed</string>
+    <string name="sleepy">sleepy</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

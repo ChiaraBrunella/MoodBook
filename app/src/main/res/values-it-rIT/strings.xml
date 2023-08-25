@@ -59,6 +59,13 @@
     <string name="today_add_habit">crea una nuova abitudine</string>
     <string name="today_tasks">I tuoi obiettivi</string>
     <string name="add_today_toDo">crea un obbiettivo</string>
+    <string name="happy">felice</string>
+    <string name="neutral">neutro</string>
+    <string name="depressed">depresso</string>
+    <string name="angry">arrabbiato</string>
+    <string name="sad">triste</string>
+    <string name="flushed">ansioso</string>
+    <string name="sleepy">assonnato</string>
 
 
 </resources>

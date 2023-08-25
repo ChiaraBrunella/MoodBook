@@ -274,7 +274,7 @@ class ToDoFragment : Fragment() {
             val inflateLayout =
                 getActivity()?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             if (taskRow == null)
-            taskRow = inflateLayout.inflate(R.layout.task, parent, false)
+                taskRow = inflateLayout.inflate(R.layout.task, parent, false)
             val taskObject = taskRow?.findViewById<TextView>(R.id.taskItem)
             taskObject?.text = taskList[position].taskName
             Log.i("taskname in row", taskList[position].taskName.toString())
