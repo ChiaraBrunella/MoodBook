@@ -125,8 +125,8 @@ class MoodFragment : Fragment() {
                     vmood.setImageResource(R.drawable.angry)
                 }
 
-                if (mood[position].equals("flushed", ignoreCase = true)) {
-                    vmood.setImageResource(R.drawable.flushed)
+                if (mood[position].equals("anxious", ignoreCase = true)) {
+                    vmood.setImageResource(R.drawable.anxious)
                 }
                 if (mood[position].equals("neutral", ignoreCase = true)) {
                     vmood.setImageResource(R.drawable.neutral)

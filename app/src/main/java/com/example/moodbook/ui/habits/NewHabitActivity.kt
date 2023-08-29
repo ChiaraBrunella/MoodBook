@@ -33,10 +33,8 @@ class NewHabitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityNewHabitBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val contentFrameLayout = binding.fragmentContainerViewTag
-        layoutInflater.inflate(R.layout.activity_new_habit, contentFrameLayout)
-        constraintLayout = binding.linearLayout2
-        constraintLayout.getBackground().alpha = 50
+
+
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
         habitName = findViewById(R.id.habit_name)

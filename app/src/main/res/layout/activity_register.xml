@@ -40,7 +40,7 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="24dp"
 
-            android:hint="Enter Name"
+            android:hint="@string/enter_name"
             android:inputType="textPersonName"
             android:selectAllOnFocus="true"
             android:textColor="#3F51B5"
@@ -104,7 +104,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="24dp"
                 android:ems="10"
-                android:text="Date of Birth:"
+                android:text="@string/date_of_birth"
                 android:textSize="16sp" />
 
             <EditText
@@ -194,7 +194,7 @@
             android:layout_gravity="center"
             android:background="@drawable/rounded_button"
             android:backgroundTint="#0080ff"
-            android:text="Register"
+            android:text="@string/register"
             android:textColor="#ffffff"
             android:textColorHighlight="#0080ff"
             android:textColorHint="#0080ff"

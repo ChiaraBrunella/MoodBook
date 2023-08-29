@@ -41,7 +41,7 @@ class StatisticsFragment : Fragment() {
     private var sadPercent: Float = 0F
     private var sleepyPercent: Float = 0F
     private var neutralPercent: Float = 0F
-    private var flushedPercent: Float = 0F
+    private var anxiousPercent: Float = 0F
     private var _binding: FragmentStatisticsBinding? = null
     private val db = FirebaseFirestore.getInstance()
     var mood = ArrayList<String?>()
@@ -53,7 +53,7 @@ class StatisticsFragment : Fragment() {
     private var happyCount: Int = 0
     private var depressedCount: Int = 0
     private var angryCount: Int = 0
-    private var flushedCount: Int = 0
+    private var anxiousCount: Int = 0
     private var neutralCount: Int = 0
     private var sleepyCount: Int = 0
 
@@ -64,7 +64,7 @@ class StatisticsFragment : Fragment() {
     // variable for our bar data set.? = null
 
     // array list for storing entries.
-    lateinit var barEntriesArrayList: ArrayList<BarEntry>
+
     lateinit var arrayBars: Array <ProgressBar>
     private lateinit var arrayPercentage: Array <Float>
 
@@ -116,7 +116,7 @@ class StatisticsFragment : Fragment() {
                                 "sad" -> sadCount++
                                 "happy" -> happyCount++
                                 "angry" -> angryCount++
-                                "flushed" -> flushedCount++
+                                "anxious" -> anxiousCount++
                                 "neutral" -> neutralCount++
                                 "depressed" -> depressedCount++
                                 "sleepy" -> sleepyCount++
@@ -125,7 +125,7 @@ class StatisticsFragment : Fragment() {
                             Log.d("", "happycount: " + happyCount)
                             binding.angryStats.text = angryCount.toString()
                             binding.depressedStats.text = depressedCount.toString()
-                            binding.flushStats.text = flushedCount.toString()
+                            binding.anxiousStats.text = anxiousCount.toString()
                             binding.happyStats.text = happyCount.toString()
                             binding.neuStats.text = neutralCount.toString()
                             binding.sadStats.text = sadCount.toString()
@@ -137,7 +137,7 @@ class StatisticsFragment : Fragment() {
                             happyPercent = (happyCount*100/mood.size).toFloat()
                             depressedPercent = (depressedCount*100/mood.size).toFloat()
                             sleepyPercent = (sleepyCount*100/mood.size).toFloat()
-                            flushedPercent = (flushedCount*100/mood.size).toFloat()
+                            anxiousPercent = (anxiousCount*100/mood.size).toFloat()
                             Log.d("", "happy perc: " + happyPercent)
                             Log.d("", "mood size: " + mood.size)
 
@@ -191,8 +191,8 @@ class StatisticsFragment : Fragment() {
 
                             binding.progbarHappy.max = 100
 
-                            arrayBars = arrayOf(binding.progbarHappy,binding.progbarSad, binding.progbarFlushed, binding.progbarAngry, binding.progbarDepressed, binding.progbarNeutral, binding.progbarSleepy)
-                            arrayPercentage = arrayOf(happyPercent, sadPercent, flushedPercent, angryPercent, depressedPercent, neutralPercent, sleepyPercent)
+                            arrayBars = arrayOf(binding.progbarHappy,binding.progbarSad, binding.progbarAnxious, binding.progbarAngry, binding.progbarDepressed, binding.progbarNeutral, binding.progbarSleepy)
+                            arrayPercentage = arrayOf(happyPercent, sadPercent, anxiousPercent, angryPercent, depressedPercent, neutralPercent, sleepyPercent)
                             for (bar in arrayBars){
                                 val progressDrawable: Drawable =
                                    bar.getProgressDrawable().mutate()
@@ -254,7 +254,7 @@ class StatisticsFragment : Fragment() {
         val entries: ArrayList<PieEntry> = ArrayList()
         entries.add(PieEntry(happyPercent))
         entries.add(PieEntry(sadPercent))
-        entries.add(PieEntry(flushedPercent))
+        entries.add(PieEntry(anxiousPercent))
         entries.add(PieEntry(angryPercent))
         entries.add(PieEntry(depressedPercent))
         entries.add(PieEntry(neutralPercent))

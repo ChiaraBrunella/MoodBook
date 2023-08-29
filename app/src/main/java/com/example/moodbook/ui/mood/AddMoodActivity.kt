@@ -9,13 +9,11 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.moodbook.MainActivity
 import com.example.moodbook.R
 import com.example.moodbook.databinding.ActivityAddmoodBinding
-import com.example.moodbook.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -28,7 +26,7 @@ class AddMoodActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     var user = FirebaseAuth.getInstance().uid
 
-    var moodid: Int = MoodFragment.Companion.getmoodid() + 1
+    var moodid: Int = MoodFragment.getmoodid() + 1
     var boolselect = -1
     var moodtype: String? = null
     private var dateSetListener: OnDateSetListener? = null
@@ -37,7 +35,7 @@ class AddMoodActivity : AppCompatActivity() {
         binding = ActivityAddmoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.selectdate.setOnClickListener(View.OnClickListener {
+        binding.selectdate.setOnClickListener({
             val cal = Calendar.getInstance()
             val year = cal[Calendar.YEAR]
             val month = cal[Calendar.MONTH]
@@ -57,33 +55,33 @@ class AddMoodActivity : AppCompatActivity() {
         binding.selectdate.setText("$dayOfMonth/$month/$year")
             Log.d("AddMoodActivity", "date:$dayOfMonth/$month/$year")
         }
-        binding.happy.setOnClickListener(View.OnClickListener {
+        binding.happy.setOnClickListener({
             moodtype = "happy"
             Toast.makeText(this@AddMoodActivity, "I feel happy", Toast.LENGTH_SHORT).show()
             if (boolselect == 1) {
-                binding.addmood.setEnabled(true)
+                binding.addmood.isEnabled = true
             }
         })
-        binding.sad.setOnClickListener(View.OnClickListener {
+        binding.sad.setOnClickListener {
             moodtype = "sad"
             Toast.makeText(this@AddMoodActivity, "I feel sad", Toast.LENGTH_SHORT).show()
             if (boolselect == 1) {
-                binding.addmood.setEnabled(true)
+                binding.addmood.isEnabled = true
             }
-        })
+        }
 
 
-        binding.sleepy.setOnClickListener(View.OnClickListener {
+        binding.sleepy.setOnClickListener {
             moodtype = "sleepy"
             Toast.makeText(this@AddMoodActivity, "I feel sleepy", Toast.LENGTH_SHORT).show()
             if (boolselect == 1) {
                 binding.addmood.setEnabled(true)
             }
-        })
+        }
 
 
 
-        binding.neutral.setOnClickListener(View.OnClickListener {
+        binding.neutral.setOnClickListener({
             moodtype = "neutral"
             Toast.makeText(this@AddMoodActivity, "I feel neutral", Toast.LENGTH_SHORT).show()
             if (boolselect == 1) {
@@ -91,22 +89,24 @@ class AddMoodActivity : AppCompatActivity() {
             }
         })
 
-        binding.flushed.setOnClickListener(View.OnClickListener {
-            moodtype = "flushed"
-            Toast.makeText(this@AddMoodActivity, "I feel flushed", Toast.LENGTH_SHORT).show()
+        binding.anxious.setOnClickListener({
+            moodtype = "anxious"
+            Toast.makeText(this@AddMoodActivity, "I feel anxious", Toast.LENGTH_SHORT).show()
             if (boolselect == 1) {
                 binding.addmood.setEnabled(true)
             }
         })
-        binding.depressed.setOnClickListener(View.OnClickListener {
-            moodtype = "depressed"
-            Toast.makeText(this@AddMoodActivity, "I feel depressed", Toast.LENGTH_SHORT).show()
-            if (boolselect == 1) {
-                binding.addmood.setEnabled(true)
-            }
-        })
+        binding.depressed.setOnClickListener(
+            {
+                moodtype = "depressed"
+                Toast.makeText(this@AddMoodActivity, "I feel depressed", Toast.LENGTH_SHORT).show()
+                if (boolselect == 1) {
+                    binding.addmood.setEnabled(true)
+                }
+            },
+        )
 
-        binding.angry.setOnClickListener(View.OnClickListener {
+        binding.angry.setOnClickListener({
             moodtype = "angry"
             Toast.makeText(this@AddMoodActivity, "I feel angry", Toast.LENGTH_SHORT).show()
             if (boolselect == 1) {
@@ -123,7 +123,7 @@ class AddMoodActivity : AppCompatActivity() {
                 }
             }
         })
-        binding.addmood.setOnClickListener(View.OnClickListener { v ->
+        binding.addmood.setOnClickListener({ v ->
             val i = v.id
             if (i == R.id.addmood) {
                 createMood(

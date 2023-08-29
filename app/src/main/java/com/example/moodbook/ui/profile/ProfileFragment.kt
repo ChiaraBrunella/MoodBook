@@ -74,25 +74,21 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
-        first_name_txt = binding.firstnameTextview
-        first_name_txt.getBackground().alpha = 75
-        /* profileViewModel.first_name_txt.observe(viewLifecycleOwner) {
+                /* profileViewModel.first_name_txt.observe(viewLifecycleOwner) {
             first_name_txt.text = it
              Log.i("create first name", first_name_txt.text.toString())
         }*/
         country_txt =binding.countryTextview
-        country_txt.getBackground().alpha = 75
+
         profileViewModel.country_txt.observe(viewLifecycleOwner) {
             country_txt.text = it
         }
         dob_txt = binding.dobTextview
-        dob_txt.getBackground().alpha = 75
+
         profileViewModel.dob_txt.observe(viewLifecycleOwner) {
             dob_txt.text = it
         }
         gender_txt = binding.genderTextview
-        gender_txt.getBackground().alpha = 75
         profileViewModel.gender_txt.observe(viewLifecycleOwner) {
             gender_txt.text = it
         }
@@ -209,7 +205,7 @@ class ProfileFragment : Fragment() {
                     val country = docsnap.getString("Country")
                     val dob = docsnap.getString("DOB")
                     val gender = docsnap.getString("Gender")
-                    first_name_txt!!.text = name
+                    binding.ProfileName.text = name
                     country_txt!!.text = country
                     dob_txt!!.text = dob
                     gender_txt!!.text = gender

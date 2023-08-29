@@ -51,7 +51,7 @@ class HabitsFragment : Fragment(), Observer, OnCompleteListener<QuerySnapshot> {
               textView.text = it
           }*/
         recyclerView = binding.habitlist
-        recyclerView.getBackground().alpha = 50
+
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
         newHabit =binding.newHabit
@@ -92,7 +92,9 @@ class HabitsFragment : Fragment(), Observer, OnCompleteListener<QuerySnapshot> {
                     e.printStackTrace()
                 }
                 startDate.time = date1
-                endDate.time = date2
+                if (date2 != null) {
+                    endDate.time = date2
+                }
                 val habit = Habit(
                     document.id,
                     document.getString("Habit Name"),

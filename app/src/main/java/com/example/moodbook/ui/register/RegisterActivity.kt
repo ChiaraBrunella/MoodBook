@@ -52,7 +52,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
         // Setup dropdown list for gender
         gender = binding.gender
-        val genderList = arrayOf("Male", "Female", "Prefer not to specify")
+        val genderList = arrayOf(getString(R.string.male), getString(R.string.female), getString(R.string.prefer_not_to_specify))
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, genderList)
         this.gender.setAdapter(adapter)
 

@@ -10,6 +10,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -37,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         val usernameEditText = findViewById<EditText>(R.id.username)
         val passwordEditText = findViewById<EditText>(R.id.password)
         val loginButton = findViewById<Button>(R.id.login)
-        val signUpText = findViewById<EditText>(R.id.register)
+        val signUpText = findViewById<TextView>(R.id.register)
         loginViewModel!!.loginFormState.observe(this, Observer<LoginFormState?> { loginFormState ->
             if (loginFormState == null) {
                 return@Observer

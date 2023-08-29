@@ -36,13 +36,13 @@
     <string name="navigation_drawer_open">Apri menu di navigazione</string>
     <string name="navigation_drawer_close">Chiudi menu di navigazione</string>
     <string name="nav_header_title">MoodBook</string>
-    <string name="nav_header_subtitle">emotions recollected in tranquillity</string>
+    <string name="nav_header_subtitle">il tuo diario delle emozioni</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="menu_home">Home</string>
-    <string name="menu_moodtracker">Diario dell\'umore</string>
+    <string name="menu_moodtracker">Diario delle emozioni</string>
     <string name="menu_habitstracker">Diario delle abitudini</string>
     <string name="menu_statistiche">Statistiche</string>
-    <string name="menu_ToDo">I tuoi compiti</string>
+    <string name="menu_ToDo">I tuoi obiettivi</string>
     <string name="menu_profilo">Profilo</string>
     <string name="habit_tracker">Diario delle abitudini</string>
     <string name="habit_yes">Button for when habit successfully done</string>
@@ -64,8 +64,37 @@
     <string name="depressed">depresso</string>
     <string name="angry">arrabbiato</string>
     <string name="sad">triste</string>
-    <string name="flushed">ansioso</string>
+    <string name="anxious">ansioso</string>
     <string name="sleepy">assonnato</string>
+    <string name="your_tasks">I tuoi obiettivi</string>
+    <string name="pending_tasks">da raggiungere</string>
+    <string name="completed_tasks">raggiunti</string>
+    <string name="delete_list">Cancella lista</string>
+    <string name="emotions_recollected_in_tranquillity">il tuo diario delle emozioni</string>
+    <string name="info">Info</string>
+    <string name="task">Obiettivo:</string>
+    <string name="finishing_date">Fine</string>
+    <string name="starting_date">Inizio:</string>
+    <string name="profile">Profilo</string>
+    <string name="touch_profile_picture_to_change">tocca l\'immagine per modificarla</string>
+    <string name="name">nome</string>
+    <string name="gender">genere</string>
+    <string name="edit_profile">modifica</string>
+    <string name="sign_out">esci</string>
+    <string name="male">uomo</string>
+    <string name="female">donna</string>
+    <string name="prefer_not_to_specify">preferisco non specificarlo</string>
+    <string name="add_habit">add_habit</string>
+    <string name="habit_quote">le buone abitudini portano alla felicità</string>
+    <string name="mood_title">Diario delle emozioni</string>
+    <string name="no_blank_pages">non lasciare pagine vuote nel tuo diario</string>
+    <string name="enter_name">nome</string>
+    <string name="register">Registrati</string>
+    <string name="log_new_mood">log new mood</string>
+    <string name="your_mood_should_not_dictate_your_manners">Your mood should not dictate your manners</string>
+    <string name="add_this_mood">Add this Mood</string>
+    <string name="notes">Notes...</string>
+    <string name="calendar">" calendario"</string>
 
 
 </resources>

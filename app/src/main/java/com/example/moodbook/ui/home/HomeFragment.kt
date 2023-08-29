@@ -58,9 +58,17 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
             textView.text = it
         }*/
         //make sure to step up for current user
-        val user = FirebaseAuth.getInstance().uid
+            val user = FirebaseAuth.getInstance().uid
 
         // collect user data
+
+           db!!.collection("users").document(user!!).get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val docsnap = task.result
+                    val name = docsnap.getString("Name")
+                    binding.textHome.text= "Ciao, " + name
+                }
+            }
 
         db.collection("users").document(user!!).collection("moodlog")
             .orderBy("date", Query.Direction.DESCENDING).addSnapshotListener(
@@ -110,8 +118,8 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                             vmood.setImageResource(R.drawable.angry)
                         }
 
-                        if (mood[0].equals("flushed", ignoreCase = true)) {
-                            vmood.setImageResource(R.drawable.flushed)
+                        if (mood[0].equals("anxious", ignoreCase = true)) {
+                            vmood.setImageResource(R.drawable.anxious)
                         }
                         if (mood[0].equals("neutral", ignoreCase = true)) {
                             vmood.setImageResource(R.drawable.neutral)

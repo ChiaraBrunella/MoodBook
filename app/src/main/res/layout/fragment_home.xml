@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".ui.home.HomeFragment">
 
     <TextView
@@ -45,6 +45,7 @@
         <androidx.cardview.widget.CardView
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            style="@style/CardView.style"
             android:layout_margin="8dp">
 
 
@@ -108,8 +109,8 @@
                     android:layout_weight="3"
                     android:text="@string/add_today_mood"
                     android:gravity="end"
-                    android:layout_margin="5dp"
-                    android:textColor="@color/blue"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@color/royal_blue"
                     android:textSize="15sp" />
 
             </TableLayout>
@@ -118,6 +119,7 @@
             android:id="@+id/card_mood"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            style="@style/CardView.style"
             android:layout_margin="8dp">
 
 
@@ -136,17 +138,31 @@
                     android:text="@string/today_habits"
                     android:textSize="20sp" />
 
-                <ListView
-                    android:id="@+id/today_habit_list"
+                <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp">
 
-                </ListView>
+                <ImageView
+                    android:id="@+id/habit_img"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/alarm_clock"
+                    />
 
+                    <ListView
+                        android:id="@+id/today_habit_list"
+                        android:layout_width="311dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp">
 
+                    </ListView>
+
+                </TableRow>
                 <TextView
                     android:id="@+id/add_habit"
                     android:layout_width="0dp"
@@ -154,6 +170,8 @@
                     android:layout_weight="3"
                     android:text="@string/today_add_habit"
                     android:gravity="end"
+                    android:textColor="@color/purple_700"
+                    android:layout_marginEnd="10dp"
                     android:textSize="15sp" />
 
             </TableLayout>
@@ -162,6 +180,7 @@
             android:id="@+id/card_habits"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            style="@style/CardView.style"
             android:layout_margin="8dp">
 
 
@@ -180,6 +199,20 @@
                     android:text="@string/today_tasks"
                     android:textSize="20sp" />
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp">
+
+                <ImageView
+                    android:id="@+id/tasks_img"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/target_red"
+                    />
+
                 <ListView
                     android:id="@+id/today_tasks_list"
                     android:layout_width="match_parent"
@@ -189,7 +222,7 @@
                     android:layout_marginEnd="8dp">
 
                 </ListView>
-
+                </TableRow>
 
                 <TextView
                     android:id="@+id/add_toDo"
@@ -198,6 +231,8 @@
                     android:layout_weight="3"
                     android:text="@string/add_today_toDo"
                     android:gravity="end"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@color/purple"
                     android:textSize="15sp" />
 
             </TableLayout>

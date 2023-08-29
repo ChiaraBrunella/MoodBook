@@ -38,7 +38,7 @@ class SplashActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_splash)
-        top = AnimationUtils.loadAnimation(this, R.anim.topanimation)
+        top = AnimationUtils.loadAnimation(this, R.anim.slide_anim)
         bottom = AnimationUtils.loadAnimation(this, R.anim.bottomanimation)
         image = findViewById(R.id.splashlogo)
         t = findViewById(R.id.sub)

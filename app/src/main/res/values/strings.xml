@@ -21,8 +21,8 @@
     <string name="change_profile">Change</string>
     <string name="email">user email</string>
     <string name="edit">Set</string>
-    <string name="date_of_birth">date of Birth</string>
-    <string name="country">country</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="country">Country</string>
     <string name="password">password</string>
     <string name="email_fix">Email</string>
     <string name="dob_fix">Date of Birth</string>
@@ -69,13 +69,48 @@
     <string name="today_habits">your habits</string>
     <string name="today_tasks">your tasks</string>
     <string name="add_today_toDo">add new task</string>
+
+    <!-- Strings related to moods -->
     <string name="happy">happy</string>
     <string name="neutral">neutral</string>
     <string name="depressed">depressed</string>
     <string name="angry">angry</string>
     <string name="sad">sad</string>
-    <string name="flushed">flushed</string>
+    <string name="anxious">anxious</string>
     <string name="sleepy">sleepy</string>
+
+    <!-- Strings related to tasks -->
+    <string name="your_tasks">your tasks</string>
+    <string name="pending_tasks">Pending Tasks</string>
+    <string name="completed_tasks">Completed Tasks</string>
+    <string name="delete_list">Delete List</string>
+    <string name="emotions_recollected_in_tranquillity">emotions recollected in tranquillity</string>
+    <string name="info">Info</string>
+    <string name="task">Task:</string>
+    <string name="finishing_date">Finishing Date:</string>
+    <string name="starting_date">Starting Date:</string>
+
+    <!-- Strings related to profile -->
+    <string name="profile">Profile</string>
+    <string name="touch_profile_picture_to_change">touch profile picture to change</string>
+    <string name="name">name</string>
+    <string name="gender">gender</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="prefer_not_to_specify">Prefer not to specify</string>
+    <string name="mood_title">Mood Tracker</string>
+    <string name="no_blank_pages">Don\'t leave any page blank in your diary</string>
+    <string name="add_habit">add_habit</string>
+    <string name="habit_quote">le buone abitudini portano alla felicità</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="register">Register</string>
+    <string name="log_new_mood">log new mood</string>
+    <string name="your_mood_should_not_dictate_your_manners">Your mood should not dictate your manners</string>
+    <string name="add_this_mood">Add this Mood</string>
+    <string name="notes">Notes...</string>
+    <string name="calendar">calendar</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>
