@@ -99,8 +99,16 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                     val vdate = binding.date
                     val vdesc = binding.description
                     val vmood =binding.emoji
-                    vdate.text = date[0]
-                    vdesc.text = desc[0]
+                    if (!date.isEmpty()) {
+                        vdate.text = date[0]
+                    } else
+                        vdate.text = "Non hai ancora inserito alcuna emozione"
+                    if (!desc.isEmpty()) {
+                        vdesc.text = desc[0]
+                    }
+                    else
+                        vdesc.text = ""
+                    if (!mood.isEmpty()) {
                     if (mood[0] != null) {
                         if (mood[0].equals("sad", ignoreCase = true)) {
                             vmood.setImageResource(R.drawable.sad)
@@ -128,8 +136,10 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                             vmood.setImageResource(R.drawable.sleepy)
                         }
 
+                    }}
+                    else {
+                        vmood.setImageResource(R.drawable.sad)
                     }
-
                     // set habits cardview data
                     val lvHabits = binding.todayHabitList
                     db!!.collection("users").document(mAuth!!.currentUser!!.uid).collection("habits").get()
