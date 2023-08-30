@@ -103,7 +103,6 @@
     <string name="mood_title">Mood Tracker</string>
     <string name="no_blank_pages">Don\'t leave any page blank in your diary</string>
     <string name="add_habit">add_habit</string>
-    <string name="habit_quote">le buone abitudini portano alla felicità</string>
     <string name="enter_name">Enter Name</string>
     <string name="register">Register</string>
     <string name="log_new_mood">log new mood</string>
@@ -111,6 +110,8 @@
     <string name="add_this_mood">Add this Mood</string>
     <string name="notes">Notes...</string>
     <string name="calendar">calendar</string>
+    <string name="habit_quote">good habits load to happiness</string>
+    <string name="add_mood">add_mood</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

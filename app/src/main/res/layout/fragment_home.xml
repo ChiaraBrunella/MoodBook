@@ -84,7 +84,7 @@
                         android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/date"
+                        android:id="@+id/mood_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"

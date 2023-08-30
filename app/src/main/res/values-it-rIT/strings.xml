@@ -84,17 +84,22 @@
     <string name="male">uomo</string>
     <string name="female">donna</string>
     <string name="prefer_not_to_specify">preferisco non specificarlo</string>
-    <string name="add_habit">add_habit</string>
+    <string name="add_habit">crea</string>
     <string name="habit_quote">le buone abitudini portano alla felicità</string>
     <string name="mood_title">Diario delle emozioni</string>
     <string name="no_blank_pages">non lasciare pagine vuote nel tuo diario</string>
     <string name="enter_name">nome</string>
     <string name="register">Registrati</string>
-    <string name="log_new_mood">log new mood</string>
-    <string name="your_mood_should_not_dictate_your_manners">Your mood should not dictate your manners</string>
-    <string name="add_this_mood">Add this Mood</string>
-    <string name="notes">Notes...</string>
+    <string name="log_new_mood">Registra un\'emozione</string>
+    <string name="your_mood_should_not_dictate_your_manners">Il tuo umore non detterà i tuoi modi</string>
+    <string name="add_this_mood">aggiungi</string>
+    <string name="notes">Note ..</string>
     <string name="calendar">" calendario"</string>
 
-
+    <string-array name="freq">
+        <item>quotidiana</item>
+        <item>settimanale</item>
+        <item>mensile</item>
+    </string-array>
+    <string name="add_mood">aggiungi emozione</string>
 </resources>

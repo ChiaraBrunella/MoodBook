@@ -96,7 +96,7 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                     }
 
                     // set mood cardview data
-                    val vdate = binding.date
+                    val vdate = binding.moodDate
                     val vdesc = binding.description
                     val vmood =binding.emoji
                     if (!date.isEmpty()) {
