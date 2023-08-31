@@ -16,8 +16,11 @@ import com.example.moodbook.R
 import com.example.moodbook.databinding.ActivityAddmoodBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.ParseException
+import java.text.SimpleDateFormat
 
 import java.util.Calendar
+import java.util.Date
 
 class AddMoodActivity : AppCompatActivity() {
 
@@ -25,6 +28,8 @@ class AddMoodActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddmoodBinding
     private val db = FirebaseFirestore.getInstance()
     var user = FirebaseAuth.getInstance().uid
+    val dateFormat = "dd/MM/yyyy"
+    val sdf = SimpleDateFormat(dateFormat)
 
     var moodid: Int = MoodFragment.getmoodid() + 1
     var boolselect = -1
@@ -40,8 +45,9 @@ class AddMoodActivity : AppCompatActivity() {
             val year = cal[Calendar.YEAR]
             val month = cal[Calendar.MONTH]
             val day = cal[Calendar.DAY_OF_MONTH]
+
             val d = DatePickerDialog(
-                this@AddMoodActivity,  //android.R.style.Widget_Holo_ActionBar_Solid,
+                this@AddMoodActivity,
                 dateSetListener,
                 year, month, day
             )
@@ -141,11 +147,17 @@ class AddMoodActivity : AppCompatActivity() {
             }
         })
     }
-
+    fun getDateFromString(datetoSaved: String?): Date? {
+        return try {
+            sdf.parse(datetoSaved)
+        } catch (e: ParseException) {
+            null
+        }
+    }
     fun createMood(UID: String?, date: String?, desc: String?, mood: String?, moodnum: Int?) {
         val user: MutableMap<String, Any?> = HashMap()
         user["id"] = moodnum
-        user["date"] = date
+        user["date"] = getDateFromString(date)
         user["description"] = desc
         user["moodtype"] = mood
         db.collection("users").document(UID!!).collection("moodlog").document().set(user)

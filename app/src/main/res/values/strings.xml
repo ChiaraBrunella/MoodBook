@@ -112,6 +112,10 @@
     <string name="calendar">calendar</string>
     <string name="habit_quote">good habits load to happiness</string>
     <string name="add_mood">add_mood</string>
+    <string name="weekly">weekly</string>
+    <string name="daily">daily</string>
+    <string name="gender_">Gender:</string>
+    <string name="country_">Country:</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

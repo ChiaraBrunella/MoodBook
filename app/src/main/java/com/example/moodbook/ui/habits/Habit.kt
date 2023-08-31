@@ -2,6 +2,8 @@ package com.example.moodbook.ui.habits
 
 
 import android.os.Build
+import com.example.moodbook.R
+import java.security.AccessController.getContext
 import java.time.temporal.ChronoUnit
 import java.util.Calendar
 import java.util.Observable
@@ -31,9 +33,10 @@ class Habit(
             daysBetween =
                 ChronoUnit.DAYS.between(startDate.toInstant(), endDate.toInstant()).toInt()
         }
-        if (frequency.equals("daily", ignoreCase = true)) {
+       // if (frequency.equals(resources.getString(R.string.weekly), ignoreCase = true)){
+        if ((frequency.equals("daily", ignoreCase = true))|| (frequency.equals("quotidiana", ignoreCase = true))){
             maxProgress = daysBetween
-        } else if (frequency.equals("weekly", ignoreCase = true)) {
+        } else if ((frequency.equals("weekly", ignoreCase = true)) || (frequency.equals("settimanale", ignoreCase = true))){
             maxProgress = daysBetween / 7
         } else {
             maxProgress = daysBetween / 28

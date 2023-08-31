@@ -26,7 +26,7 @@ class DatePickerFragment(private val dateString: EditText?) : DialogFragment(), 
         c[Calendar.YEAR] = year
         c[Calendar.MONTH] = month
         c[Calendar.DAY_OF_MONTH] = dayOfMonth
-        val dateFormat = "MM/dd/yyyy"
+        val dateFormat = "dd/MM/yyyy"
         val sdf = SimpleDateFormat(dateFormat)
         dateString!!.setText(sdf.format(c.time))
     }

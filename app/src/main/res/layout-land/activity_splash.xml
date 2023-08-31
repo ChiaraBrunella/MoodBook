@@ -5,20 +5,21 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   tools:context=".ui.splash.SplashActivity">
+    android:layout_gravity="center"
+    tools:context=".ui.splash.SplashActivity">
 
 
     <ImageView
         android:id="@+id/splashlogo"
         android:layout_width="260dp"
         android:layout_height="260dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+
         android:src="@drawable/moodbook_logo"
         android:transitionName="logoimage"
+        android:layout_marginVertical="60dp"
+        android:layout_marginHorizontal="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sub"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -27,6 +28,7 @@
         android:id="@+id/sub"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:maxLines="2"
         android:fontFamily="@font/bangers"
         android:text="@string/emotions_recollected_in_tranquillity"
         android:textAlignment="center"
@@ -34,11 +36,13 @@
         android:textColor="@color/blue"
         android:textColorHighlight="#000F0F0F"
         android:textSize="30sp"
+        android:layout_marginVertical="60dp"
+        android:layout_marginHorizontal="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/splashlogo" />
+        app:layout_constraintStart_toEndOf="@id/splashlogo"
+        app:layout_constraintTop_toTopOf="@+id/splashlogo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

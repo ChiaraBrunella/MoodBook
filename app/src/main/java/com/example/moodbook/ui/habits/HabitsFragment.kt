@@ -86,8 +86,8 @@ class HabitsFragment : Fragment(), Observer, OnCompleteListener<QuerySnapshot> {
                 var date1: Date? = null
                 var date2: Date? = null
                 try {
-                    date1 = SimpleDateFormat("MM/dd/yyyy").parse(document.getString("Start Date"))
-                    date2 = SimpleDateFormat("MM/dd/yyyy").parse(document.getString("End Date"))
+                    date1 = SimpleDateFormat("dd/MM/yyyy").parse(document.getString("Start Date"))
+                    date2 = SimpleDateFormat("dd/MM/yyyy").parse(document.getString("End Date"))
                 } catch (e: ParseException) {
                     e.printStackTrace()
                 }

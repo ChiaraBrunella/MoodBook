@@ -24,6 +24,8 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 
 class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
@@ -80,7 +82,8 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                             return@EventListener
                         }
                         if (snapshot != null && snapshot.exists()) {
-                            date.add(snapshot.getString("date"))
+                            var mooddate = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(snapshot.getDate("date"))
+                            date.add(mooddate)
                             desc.add(snapshot.getString("description"))
                             mood.add(snapshot.getString("moodtype"))
                             moodid.add(Integer.valueOf(snapshot["id"].toString()))
@@ -138,7 +141,7 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
 
                     }}
                     else {
-                        vmood.setImageResource(R.drawable.sad)
+                        vmood.setImageResource(R.drawable.hands_up)
                     }
                     // set habits cardview data
                     val lvHabits = binding.todayHabitList

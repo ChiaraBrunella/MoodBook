@@ -8,7 +8,7 @@ android:layout_height="fill_parent">
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/sfondo_viola_azzurro"
+    android:background="@drawable/header_violazzurro"
     >
 
 
@@ -140,19 +140,21 @@ android:layout_height="fill_parent">
                 android:textColor="@color/black"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="80dp">
 
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:layout_marginStart="260dp"
-            android:backgroundTint="#0db9f2"
-            android:text="@string/sign_out" />
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="260dp"
+                android:backgroundTint="#0db9f2"
+                android:text="@string/sign_out" />
         </LinearLayout>
     </LinearLayout>
 

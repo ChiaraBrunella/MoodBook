@@ -54,7 +54,7 @@ class NewHabitActivity : AppCompatActivity() {
         })
         newHabit.setOnClickListener(View.OnClickListener {
             addHabit()
-            val i = Intent(applicationContext, HabitsFragment::class.java)
+            val i = Intent(applicationContext, MainActivity::class.java)
             i.putExtra("num_fragment", 3);
             startActivity(i)
 
@@ -64,7 +64,7 @@ class NewHabitActivity : AppCompatActivity() {
     private fun addHabit() {
         val habit: MutableMap<String, String> = HashMap()
         habit["Habit Name"] = habitName!!.text.toString()
-        val sdf = SimpleDateFormat("MM/dd/yyyy")
+        val sdf = SimpleDateFormat("dd/MM/yyyy")
         val start = sdf.format(Calendar.getInstance().time)
         habit["Start Date"] = start
         habit["End Date"] = habitEndDate!!.text.toString()

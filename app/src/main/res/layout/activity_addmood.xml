@@ -195,7 +195,7 @@
                     android:enabled="false"
                     android:text="@string/add_this_mood"
                     android:textAlignment="center"
-                    android:textColor="#050505"
+                    android:textColor="@color/white"
                     android:textSize="20sp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

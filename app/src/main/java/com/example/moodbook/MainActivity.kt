@@ -1,8 +1,11 @@
 package com.example.moodbook
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
@@ -15,6 +18,7 @@ import com.example.moodbook.databinding.ActivityMainBinding
 import com.example.moodbook.ui.habits.HabitsFragment
 import com.example.moodbook.ui.mood.MoodFragment
 import com.google.android.material.navigation.NavigationView
+
 
 open class MainActivity : AppCompatActivity() {
 
@@ -82,5 +86,28 @@ open class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.action_logout -> {
+            val b = AlertDialog.Builder(this)
+            b.setMessage("Are you sure you want to sign out?")
+            b.setCancelable(true)
+            b.setNegativeButton("Yes") { dialog, which ->
+                dialog.cancel()
+                val i = Intent(this, LoginActivity::class.java)
+                /* val sharedPref =
+                     this.getActivity()?.getSharedPreferences("com.example.moodbook", Context.MODE_PRIVATE)
+                 val prefEditor = sharedPref?.edit()
+                 val userId = sharedPref?.getString("isLogged", null)
+                 prefEditor?.putString("isLogged", null)
+                 prefEditor?.commit()*/
+                startActivity(i)
+                }
+                b.setPositiveButton("No") { dialog, which -> dialog.dismiss() }
+                val a = b.create()
+                a.show()
 
+                true
+        }
+        else -> super.onOptionsItemSelected(item)
+    }
 }

@@ -36,7 +36,7 @@
     <string name="navigation_drawer_open">Apri menu di navigazione</string>
     <string name="navigation_drawer_close">Chiudi menu di navigazione</string>
     <string name="nav_header_title">MoodBook</string>
-    <string name="nav_header_subtitle">il tuo diario delle emozioni</string>
+    <string name="nav_header_subtitle">il diario delle emozioni</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="menu_home">Home</string>
     <string name="menu_moodtracker">Diario delle emozioni</string>
@@ -102,4 +102,8 @@
         <item>mensile</item>
     </string-array>
     <string name="add_mood">aggiungi emozione</string>
+    <string name="weekly">settimanale</string>
+    <string name="daily">quotidiana</string>
+    <string name="gender_">genere:</string>
+    <string name="country_">nazione:</string>
 </resources>
