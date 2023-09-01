@@ -29,6 +29,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var countryEditText: EditText
     private lateinit var DOBEditText: EditText
     private lateinit var passwordEditText: EditText
+    private lateinit var conf_passworEditText: EditText
     private lateinit var nameEditText: EditText
     private lateinit var usernameEditText: EditText
     private lateinit var gender: Spinner
@@ -60,6 +61,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         nameEditText = binding.name
         usernameEditText = binding.username
         passwordEditText = binding.password
+        conf_passworEditText =binding.confPassword
         DOBEditText = binding.DOB
         countryEditText = binding.country
         registerButton = binding.register
@@ -78,6 +80,9 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 if (registerFormState.passwordError != null) {
                     passwordEditText.setError(getString(registerFormState.passwordError!!))
+                }
+                if (registerFormState.conf_passwError != null) {
+                    conf_passworEditText.setError(getString(registerFormState.conf_passwError!!))
                 }
                 if (registerFormState.dOBError != null) {
                     DOBEditText.setError(getString(registerFormState.dOBError!!))
@@ -98,7 +103,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             override fun afterTextChanged(s: Editable) {
                 registerViewModel!!.registerDataChanged(
                     usernameEditText.getText().toString(),
-                    passwordEditText.getText().toString(), nameEditText.getText().toString(),
+                    passwordEditText.getText().toString(),
+                    conf_passworEditText.text.toString(), nameEditText.getText().toString(),
                     DOBEditText.getText().toString(), gender.getSelectedItem().toString(),
                     countryEditText.getText().toString()
                 )
@@ -108,6 +114,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         // Setup listeners for input field changes
         usernameEditText.addTextChangedListener(afterTextChangedListener)
         passwordEditText.addTextChangedListener(afterTextChangedListener)
+        conf_passworEditText.addTextChangedListener(afterTextChangedListener)
         DOBEditText.addTextChangedListener(afterTextChangedListener)
         registerButton.setOnClickListener(this)
         gender.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
@@ -119,7 +126,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             ) {
                 registerViewModel!!.registerDataChanged(
                     usernameEditText.getText().toString(),
-                    passwordEditText.getText().toString(), nameEditText.getText().toString(),
+                    passwordEditText.getText().toString(), conf_passworEditText.text.toString(),
+                    nameEditText.getText().toString(),
                     DOBEditText.getText().toString(), gender.getSelectedItem().toString(),
                     countryEditText.getText().toString()
                 )
@@ -128,7 +136,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             override fun onNothingSelected(parentView: AdapterView<*>?) {
                 registerViewModel!!.registerDataChanged(
                     usernameEditText.getText().toString(),
-                    passwordEditText.getText().toString(), nameEditText.getText().toString(),
+                    passwordEditText.getText().toString(),
+                    conf_passworEditText.text.toString(), nameEditText.getText().toString(),
                     DOBEditText.getText().toString(), gender.getSelectedItem().toString(),
                     countryEditText.getText().toString()
                 )

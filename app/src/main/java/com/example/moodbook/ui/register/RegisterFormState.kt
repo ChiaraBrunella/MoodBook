@@ -8,6 +8,8 @@ class RegisterFormState {
         private set
     var passwordError: Int?
         private set
+    var conf_passwError: Int?
+        private set
     var nameError: Int?
         private set
     var dOBError: Int?
@@ -20,12 +22,13 @@ class RegisterFormState {
         private set
 
     constructor(
-        usernameError: Int?, passwordError: Int?,
+        usernameError: Int?, passwordError: Int?,conf_passwError: Int?,
         nameError: Int?, DOBError: Int?,
         genderError: Int?, countryError: Int?
     ) {
         this.usernameError = usernameError
         this.passwordError = passwordError
+        this.conf_passwError = conf_passwError
         this.nameError = nameError
         this.countryError = countryError
         dOBError = DOBError
@@ -36,6 +39,7 @@ class RegisterFormState {
     constructor(isDataValid: Boolean) {
         usernameError = null
         passwordError = null
+        conf_passwError = null
         nameError = null
         countryError = null
         dOBError = null

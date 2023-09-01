@@ -14,13 +14,14 @@ class RegisterViewModel internal constructor() : ViewModel() {
     }
 
     fun registerDataChanged(
-        username: String?, password: String?, name: String?,
+        username: String?, password: String?, conf_passw: String?, name: String?,
         DOB: String, gender: String, country: String?
     ) {
         if (!isUserNameValid(username)) {
             registerFormState.setValue(
-                RegisterFormState(
+                 RegisterFormState(
                     R.string.invalid_username,
+                    null,
                     null,
                     null,
                     null,
@@ -36,12 +37,26 @@ class RegisterViewModel internal constructor() : ViewModel() {
                     null,
                     null,
                     null,
+                    null,
+                    null
+                )
+            )
+        } else if (!isConfirmPasswordValid(password, conf_passw)) {
+            registerFormState.setValue(
+                RegisterFormState(
+                    null,
+                    null,
+                    R.string.password_mismatch,
+                    null,
+                    null,
+                    null,
                     null
                 )
             )
         } else if (!isDOBValid(DOB)) {
             registerFormState.setValue(
                 RegisterFormState(
+                    null,
                     null,
                     null,
                     null,
@@ -53,6 +68,7 @@ class RegisterViewModel internal constructor() : ViewModel() {
         } else if (!isGenderValid(gender)) {
             registerFormState.setValue(
                 RegisterFormState(
+                    null,
                     null,
                     null,
                     null,
@@ -82,6 +98,12 @@ class RegisterViewModel internal constructor() : ViewModel() {
     private fun isPasswordValid(password: String?): Boolean {
         return password != null && password.trim { it <= ' ' }.length > 5
     }
+
+    // A placeholder password validation check
+    private fun isConfirmPasswordValid(password: String?,conf_passw: String?): Boolean {
+        return password.equals(conf_passw)
+    }
+
 
     // A placeholder DOB validation check
     private fun isDOBValid(DOB: String): Boolean {

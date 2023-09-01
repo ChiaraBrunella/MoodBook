@@ -38,7 +38,6 @@
             android:layout_gravity="center_vertical"
             android:gravity="bottom"
             android:background="@drawable/plus_sign"
-            android:foregroundTintMode="screen"
             android:backgroundTint="#FF9378C7"
             android:layout_marginTop="50dp"
             android:contentDescription="@string/add_mood"

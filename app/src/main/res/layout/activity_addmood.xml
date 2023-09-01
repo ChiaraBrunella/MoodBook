@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/baseline_calendar_month_24"
                     android:drawableTint="#000C5D"
-                    android:text=" select date"
+                    android:text="@string/select_date"
                     android:textAlignment="center"
                     android:textColor="#000C5D"
                     android:textSize="26sp" />

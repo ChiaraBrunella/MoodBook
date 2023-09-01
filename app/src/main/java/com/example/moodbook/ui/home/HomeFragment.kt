@@ -68,7 +68,7 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                 if (task.isSuccessful) {
                     val docsnap = task.result
                     val name = docsnap.getString("Name")
-                    binding.textHome.text= "Ciao, " + name
+                    binding.textHome?.text= "Ciao, " + name
                 }
             }
 

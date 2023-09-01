@@ -101,7 +101,7 @@
     <string name="female">Female</string>
     <string name="prefer_not_to_specify">Prefer not to specify</string>
     <string name="mood_title">Mood Tracker</string>
-    <string name="no_blank_pages">Don\'t leave any page blank in your diary</string>
+    <string name="no_blank_pages">Don\'t leave blank pages in your diary</string>
     <string name="add_habit">add_habit</string>
     <string name="enter_name">Enter Name</string>
     <string name="register">Register</string>
@@ -116,6 +116,9 @@
     <string name="daily">daily</string>
     <string name="gender_">Gender:</string>
     <string name="country_">Country:</string>
+    <string name="select_date">select date</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="password_mismatch">Password mismatch</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

@@ -49,11 +49,11 @@
     <string name="habit_no">Button for when habit not successfully done</string>
     <string name="new_habit">Nuova abitudine</string>
     <string name="habit_name">Nome</string>
-    <string name="habit_end_date">Fine</string>
+    <string name="habit_end_date">Data di fine</string>
     <string name="habit_frequency">Frequenza</string>
-    <string name="add_new_habit">Traccia</string>
+    <string name="add_new_habit">Traccia questa abitudine</string>
     <string name="home_title">Oggi</string>
-    <string name="last_mood">L\'ultima volta ti sentivi...</string>
+    <string name="last_mood">L\'ultima volta ti sentivi…</string>
     <string name="today_habits">Le tue abitudini</string>
     <string name="add_today_mood">aggiungi il tuo umore di oggi</string>
     <string name="today_add_habit">crea una nuova abitudine</string>
@@ -93,7 +93,7 @@
     <string name="log_new_mood">Registra un\'emozione</string>
     <string name="your_mood_should_not_dictate_your_manners">Il tuo umore non detterà i tuoi modi</string>
     <string name="add_this_mood">aggiungi</string>
-    <string name="notes">Note ..</string>
+    <string name="notes">Note ...</string>
     <string name="calendar">" calendario"</string>
 
     <string-array name="freq">
@@ -104,6 +104,9 @@
     <string name="add_mood">aggiungi emozione</string>
     <string name="weekly">settimanale</string>
     <string name="daily">quotidiana</string>
-    <string name="gender_">genere:</string>
-    <string name="country_">nazione:</string>
+    <string name="gender_">genere: </string>
+    <string name="country_">nazione: </string>
+    <string name="select_date">scegli una data</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="password_mismatch">Password mismatch</string>
 </resources>
