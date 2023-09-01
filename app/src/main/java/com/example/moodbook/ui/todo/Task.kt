@@ -9,6 +9,9 @@ class Task {
     lateinit var end_date //optional
             : String
     var completed = false
+
+    var isChecked: Boolean = false
+
         private set
     lateinit var taskId: String
 

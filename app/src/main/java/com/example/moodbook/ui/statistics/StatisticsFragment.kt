@@ -64,7 +64,7 @@ class StatisticsFragment : Fragment() {
     // variable for our bar data set.? = null
 
     // array list for storing entries.
-    lateinit var barEntriesArrayList: ArrayList<BarEntry>
+
     lateinit var arrayBars: Array <ProgressBar>
     private lateinit var arrayPercentage: Array <Float>
 

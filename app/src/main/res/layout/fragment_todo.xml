@@ -1,88 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_gravity="center_vertical"
-    android:orientation="vertical">
+    tools:context=".ui.todo.ToDoFragment">
 
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/text_toDo"
         android:layout_width="match_parent"
-        android:layout_height="252dp"
-        android:paddingTop="20dp"
-        android:background="#65A0CFE2"
-        android:orientation="vertical">
+        android:layout_height="@dimen/nav_header_height"
+        android:background="@drawable/sfondo_viola_azzurro"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="@string/to_do_list"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintBottom_toTopOf="@+id/rvTodoItems"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-               <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bangers"
-            android:textStyle="bold"
-            android:text="To-Do List"
-            android:textAlignment="center"
-            android:textColor="#1A237E"
-            android:textSize="30sp" />
-        <Button
-            android:id="@+id/addButton"
-            android:layout_width="match_parent"
-            android:layout_marginHorizontal="30dp"
-            android:layout_height="50dp"
-            android:backgroundTint="#972196F3"
-            android:text="+"
-            android:textSize="25dp"/>
-
-
-        <TabLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="10dp"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/viewCompletedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#9219D5F0"
-                android:text="My Completed Tasks">
-
-            </Button>
-
-            <Button
-                android:id="@+id/viewIncompletedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#5BCEDF"
-                android:text="My Pending Tasks">
-
-            </Button>
-        </TabLayout>
-
-    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTodoItems"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddTodo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_toDo" />
 
 
-    <ListView
-        android:id="@+id/myList"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginTop="-15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/todolistbackground"/>
     <Button
-        android:id="@+id/delete_list_btn"
-        android:layout_width="match_parent"
-        android:text="Delete List"
-        android:layout_height="40sp"
-        android:layout_gravity="center"
-        android:textSize="18sp"
-        android:layout_marginTop="-40dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="10dp"/>
+        android:id="@+id/btnAddTodo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Todo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDeleteDoneTodos"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btnDeleteDoneTodos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

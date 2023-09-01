@@ -66,6 +66,7 @@
     <string name="sad">triste</string>
     <string name="flushed">ansioso</string>
     <string name="sleepy">assonnato</string>
+    <string name="to_do_list">To-Do List</string>
 
 
 </resources>

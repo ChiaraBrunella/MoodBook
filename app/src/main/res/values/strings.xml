@@ -76,6 +76,7 @@
     <string name="sad">sad</string>
     <string name="flushed">flushed</string>
     <string name="sleepy">sleepy</string>
+    <string name="to_do_list">To-Do List</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>
