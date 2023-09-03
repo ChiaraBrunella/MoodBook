@@ -9,6 +9,9 @@ class Task {
     lateinit var end_date //optional
             : String
     var completed = false
+
+    var isChecked: Boolean = false
+
         private set
     lateinit var taskId: String
 
@@ -32,7 +35,12 @@ class Task {
     fun setCompleted() {
         completed = true
     }
-
+    fun setChecked() {
+        isChecked = true
+    }
+    fun setUnChecked() {
+        isChecked = false
+    }
     companion object {
         private var taskIdCounter = 0
     }

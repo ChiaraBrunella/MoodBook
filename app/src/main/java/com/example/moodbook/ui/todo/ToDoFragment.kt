@@ -22,25 +22,25 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moodbook.R
 import com.example.moodbook.databinding.FragmentTodoBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Calendar
+import java.util.Objects
 
 class ToDoFragment : Fragment() {
 
-    private lateinit var myListView: ListView
-    private lateinit var deleteListButton: Button
-    private lateinit var incompleteButton: Button
-    private lateinit var completedButton: Button
-    private lateinit var addButton: Button
+
+
     private var _binding: FragmentTodoBinding?  = null
-    private var mylistadapter: MyListAdapter? = null
-    private var currentState: State? = null
+    private lateinit var todoAdapter: TodoAdapter
+
+
     private var db: FirebaseFirestore? = null
     private var uid: String? = null
-    private val incompletedList: MutableList<Task> = ArrayList()
+
     private val completedList: MutableList<Task> = ArrayList()
     private var dateSetListener: DatePickerDialog.OnDateSetListener? = null
     private var enddateSetListener: DatePickerDialog.OnDateSetListener? = null
@@ -59,185 +59,208 @@ class ToDoFragment : Fragment() {
 
         _binding = FragmentTodoBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        /*val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }*/
+        var todoAdapter = TodoAdapter(completedList)
+        binding.rvTodoItems.adapter = todoAdapter
+        binding.rvTodoItems.layoutManager = LinearLayoutManager(context)
 
 
-        currentState = State.INCOMPLETE_TASKS
-        addButton = binding.addButton
-        completedButton = binding.viewCompletedButton
-        incompleteButton = binding.viewIncompletedButton
-        deleteListButton = binding.deleteListBtn
+
         db = FirebaseFirestore.getInstance()
         uid = FirebaseAuth.getInstance().currentUser!!.uid
-        mylistadapter = MyListAdapter()
-        allCompletedTasksFromDB
-        allIncompletedTasksFromDB
-        myListView = binding.myList
-        myListView.setAdapter(mylistadapter)
-        if (currentState == State.INCOMPLETE_TASKS) {
-            incompleteButton.setEnabled(false)
-        } else {
-            completedButton.setEnabled(false)
-            addButton.setEnabled(false)
-        }
-        myListView.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
-            val infoTaskDialogView = layoutInflater.inflate(R.layout.info_task_dialog, null)
+        db!!.collection("users").document(uid!!).collection("taskLog").get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result) {
+                        val taskItem = document.data
+                        val taskName = taskItem["taskname"] as String?
+                        val startDate = taskItem["startDate"] as String?
+                        val finishDate = taskItem["finishDate"] as String?
+                        val complete = taskItem["completed"] as Boolean?
+                        val t = Task()
+                        t.end_date = finishDate.toString()
+                        t.start_date = startDate.toString()
+                        t.taskName = taskName.toString()
+                        t.taskId = document.id
+                        t.completed = complete!!
+                        completedList.add(t)
+                        Log.i("taskname aggiunto a completed list", taskName.toString())
+                        Log.i("taskname  e completezza:", taskName.toString() + t.completed.toString() )
+                        todoAdapter.notifyDataSetChanged()
+
+                    }
+
+                }
+            }
+
+
+
+
+
+  todoAdapter.setOnItemClickListener(object: TodoAdapter.OnItemClickListener{
+      override fun onItemClick(position: Int) {
+
+      }
+  })
+
+
+            /*val infoTaskDialogView = layoutInflater.inflate(R.layout.info_task_dialog, null)
             val taskLabel = infoTaskDialogView.findViewById<TextView>(R.id.taskLabel)
             val startDateLabel = infoTaskDialogView.findViewById<TextView>(R.id.startDateLabel)
             val endDateLabel = infoTaskDialogView.findViewById<TextView>(R.id.endDateLabel)
-            if (currentState == State.INCOMPLETE_TASKS) {
-                val task = incompletedList[position]
-                taskLabel.text = task.taskName
+
+                val task = completedList[position]
+              taskLabel.text = task.taskName
                 startDateLabel.text = task.start_date
                 endDateLabel.text = task.end_date
                 val infoDialog = AlertDialog.Builder(requireActivity())
                     .setView(infoTaskDialogView)
                     .setPositiveButton("Mark As Completed") { dialog, which -> //mark task as completed
-                        task.setCompleted()
                         updateCompleteInDb(task.taskId)
+                        task.completed = true
                         completedList.add(task)
-                        incompletedList.remove(task)
-                        mylistadapter!!.setData(incompletedList)
+
+                        todoAdapter!!.setData(completedList)
                     }
-                    .setNegativeButton("Cancel Task") { dialog, which ->
-                        removeTaskFromDb(task.taskId)
-                        incompletedList.remove(task)
-                        mylistadapter!!.setData(incompletedList)
-                    }
-                    .create()
-                infoDialog.show()
-            } else {
-                val task = completedList[position]
-                taskLabel.text = task.taskName
-                startDateLabel.text = task.start_date
-                endDateLabel.text = task.end_date
-                val infoDialog = AlertDialog.Builder(requireActivity())
-                    .setView(infoTaskDialogView)
                     .setNegativeButton("Cancel Task") { dialog, which ->
                         removeTaskFromDb(task.taskId)
                         completedList.remove(task)
-                        mylistadapter!!.setData(completedList)
+                        todoAdapter!!.setData(completedList)
                     }
                     .create()
                 infoDialog.show()
-            }
-        })
-        addButton.setOnClickListener(View.OnClickListener {
-            val addTaskDialogView = layoutInflater.inflate(R.layout.add_new_task_dialog, null)
-            val taskName = addTaskDialogView.findViewById<EditText>(R.id.task_name)
-            val startDate = addTaskDialogView.findViewById<TextView>(R.id.start_date)
-            val finishDate = addTaskDialogView.findViewById<TextView>(R.id.end_date)
-            startDate.setOnClickListener {
-                val cal = Calendar.getInstance()
-                val year = cal[Calendar.YEAR]
-                val month = cal[Calendar.MONTH]
-                val day = cal[Calendar.DAY_OF_MONTH]
-                val d = DatePickerDialog(
-                    addTaskDialogView.context,  //android.R.style.Widget_Holo_ActionBar_Solid,
-                    dateSetListener,
-                    year, month, day
-                )
-                d.window!!.setBackgroundDrawable(ColorDrawable(Color.WHITE))
-                d.show()
-            }
-            finishDate.setOnClickListener {
-                val cal = Calendar.getInstance()
-                val year = cal[Calendar.YEAR]
-                val month = cal[Calendar.MONTH]
-                val day = cal[Calendar.DAY_OF_MONTH]
-                val d = DatePickerDialog(
-                    addTaskDialogView.context,  //android.R.style.Widget_Holo_ActionBar_Solid,
-                    enddateSetListener,
-                    year, month, day
-                )
-                d.window!!.setBackgroundDrawable(ColorDrawable(Color.WHITE))
-                d.show()
-            }
-            dateSetListener =
-                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                    var month = month
-                    month = month + 1
-                    startDate.text = "$dayOfMonth/$month/$year"
-                    Log.d("task added", "date:$dayOfMonth/$month/$year")
-                }
-            enddateSetListener =
-                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                    var month = month
-                    month = month + 1
-                    finishDate.text = "$dayOfMonth/$month/$year"
-                    Log.d("task added", "date:$dayOfMonth/$month/$year")
-                }
-            val dialog = AlertDialog.Builder(requireContext())
-                .setView(addTaskDialogView)
-                .setPositiveButton(null) { dialog, which ->
-                    if (taskName.text.toString().isEmpty()) {
-                        Toast.makeText(
-                            requireContext(),
-                            "ERROR: Please specify task name",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Successfully Added Task",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        val newTask = Task(
-                            taskName.text.toString(),
-                            startDate.text.toString(),
-                            finishDate.text.toString()
+
+        })*/
+                binding.btnAddTodo.setOnClickListener(View.OnClickListener {
+
+                    val addTaskDialogView =
+                        layoutInflater.inflate(R.layout.add_new_task_dialog, null)
+                    val taskName = addTaskDialogView.findViewById<EditText>(R.id.task_name)
+                    val startDate = addTaskDialogView.findViewById<TextView>(R.id.start_date)
+                    val finishDate = addTaskDialogView.findViewById<TextView>(R.id.end_date)
+                    startDate.setOnClickListener {
+                        val cal = Calendar.getInstance()
+                        val year = cal[Calendar.YEAR]
+                        val month = cal[Calendar.MONTH]
+                        val day = cal[Calendar.DAY_OF_MONTH]
+                        val d = DatePickerDialog(
+                            addTaskDialogView.context,  //android.R.style.Widget_Holo_ActionBar_Solid,
+                            dateSetListener,
+                            year, month, day
                         )
-                        incompletedList.add(newTask)
-                        //add to database
-                        addTaskToDatabase(
-                            taskName.text.toString(),
-                            startDate.text.toString(),
-                            finishDate.text.toString(),
-                            newTask.taskId,
-                            false
-                        )
-                        mylistadapter!!.setData(incompletedList)
+                        d.window!!.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+                        d.show()
                     }
+                    finishDate.setOnClickListener {
+                        val cal = Calendar.getInstance()
+                        val year = cal[Calendar.YEAR]
+                        val month = cal[Calendar.MONTH]
+                        val day = cal[Calendar.DAY_OF_MONTH]
+                        val d = DatePickerDialog(
+                            addTaskDialogView.context,  //android.R.style.Widget_Holo_ActionBar_Solid,
+                            enddateSetListener,
+                            year, month, day
+                        )
+                        d.window!!.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+                        d.show()
+                    }
+                    dateSetListener =
+                        DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                            var month = month
+                            month = month + 1
+                            startDate.text = "$dayOfMonth/$month/$year"
+                            Log.d("task added", "date:$dayOfMonth/$month/$year")
+                        }
+                    enddateSetListener =
+                        DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                            var month = month
+                            month = month + 1
+                            finishDate.text = "$dayOfMonth/$month/$year"
+                            Log.d("task added", "date:$dayOfMonth/$month/$year")
+                        }
+                    val dialog = AlertDialog.Builder(requireContext())
+                        .setView(addTaskDialogView)
+                        .setPositiveButton(null) { dialog, which ->
+                            if (taskName.text.toString().isEmpty()) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "ERROR: Please specify task name",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Successfully Added Task",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                val newTask = Task(
+                                    taskName.text.toString(),
+                                    startDate.text.toString(),
+                                    finishDate.text.toString()
+                                )
+
+                                //add to database
+                                addTaskToDatabase(
+                                    taskName.text.toString(),
+                                    startDate.text.toString(),
+                                    finishDate.text.toString(),
+                                    newTask.taskId,
+                                    false
+                                )
+                                todoAdapter.addTodo(newTask)
+                            }
+                        }
+                        .setPositiveButtonIcon(
+                            AppCompatResources.getDrawable(
+                                it.context,
+                                R.drawable.complete_task
+                            )
+                        )
+                        .create()
+                    dialog.show()
+
+                    todoAdapter.notifyDataSetChanged()
+
+                })
+
+                binding.btnComplete.setOnClickListener {
+            for (todo: Task in completedList) {
+                if (todo.isChecked) {
+                    if (!todo.completed){
+                    db!!.collection("users").document(uid!!).collection("taskLog")
+                        .document(todo.taskId!!)
+                        .update("completed", true)
+                    Log.i("todo: " + todo.taskName, "is completed: " + todo.completed)
+                    todo.setCompleted()
+                    } else {
+                        db!!.collection("users").document(uid!!).collection("taskLog")
+                            .document(todo.taskId!!)
+                            .update("completed", false)
+                        Log.i("todo: " + todo.taskName, "is completed: " + todo.completed)
+                      todo.completed = false
+                    }
+                    todo.setUnChecked()
+
+                    todoAdapter.notifyDataSetChanged()
                 }
-                .setPositiveButtonIcon(
-                    AppCompatResources.getDrawable ( it.context,
-                        R.drawable.complete_task  ))
-                .create()
-            dialog.show()
-        })
-        completedButton.setOnClickListener(View.OnClickListener {
-            mylistadapter!!.setData(completedList)
-            completedButton.setEnabled(false)
-            incompleteButton.setEnabled(true)
-            addButton.setEnabled(false)
-            currentState = State.COMPLETE_TASKS
-        })
-        incompleteButton.setOnClickListener(View.OnClickListener {
-            mylistadapter!!.setData(incompletedList)
-            incompleteButton.setEnabled(false)
-            completedButton.setEnabled(true)
-            addButton.setEnabled(true)
-            currentState = State.INCOMPLETE_TASKS
-        })
-        deleteListButton.setOnClickListener(View.OnClickListener {
-            if (currentState == State.INCOMPLETE_TASKS) {
-                for (t in incompletedList) {
-                    removeTaskFromDb(t.taskId)
-                }
-                incompletedList.clear()
-                mylistadapter!!.setData(incompletedList)
-            } else {
-                for (t in completedList) {
-                    removeTaskFromDb(t.taskId)
-                }
-                completedList.clear()
-                mylistadapter!!.setData(completedList)
             }
-        })
+        }
+                binding.btnDeleteDoneTodos.setOnClickListener {
+                    for (todo: Task in completedList) {
+
+                        if (todo.isChecked) {
+                            Log.i("todo: " + todo.taskName, "is done")
+                            db!!.collection("users").document(uid!!).collection("taskLog")
+                                .document(todo.taskId!!).delete()
+                            todo.setUnChecked()
+                           todoAdapter.deleteTodo(todo)
+                            todoAdapter.notifyDataSetChanged()
+
+
+                        }
+
+                    }
+
+                }
 
         return root
     }
@@ -247,7 +270,7 @@ class ToDoFragment : Fragment() {
         _binding = null
     }
 
-    internal inner class MyListAdapter : BaseAdapter() {
+   /* internal inner class MyListAdapter : BaseAdapter() {
         var taskList: MutableList<Task> = ArrayList()
         fun setData(mList: List<Task>?) {
             taskList.clear()
@@ -280,7 +303,7 @@ class ToDoFragment : Fragment() {
             Log.i("taskname in row", taskList[position].taskName.toString())
             return taskRow
         }
-    }
+    }*/
 
     fun addTaskToDatabase(
         taskName: String,
@@ -298,7 +321,7 @@ class ToDoFragment : Fragment() {
             .set(newTaskForUser)
     }
 
-    val allCompletedTasksFromDB: Unit
+   /* val allTasksFromDB: Unit
         get() {
             db!!.collection("users").document(uid!!).collection("taskLog")
                 .get()
@@ -311,48 +334,16 @@ class ToDoFragment : Fragment() {
                             val finishDate = taskItem["finishDate"] as String?
                             val complete = taskItem["completed"] as Boolean
                             val t = Task()
-                            t.setCompleted()
                             t.end_date = finishDate.toString()
                             t.start_date = startDate.toString()
                             t.taskName = taskName.toString()
                             t.taskId = document.id
-                            Log.i("taskname da snapshot", taskName.toString())
-                            if (complete) {
+                            t.completed = complete
                                 completedList.add(t)
                                 Log.i("taskname aggiunto a completed list", taskName.toString())
-                                Log.i("completed list lenght", incompletedList.size.toString())
-                            }
+                            Log.i("taskname  e completezza:", taskName.toString() + t.completed.toString() )
+
                         }
-                        mylistadapter!!.setData(completedList)
-                    }
-                }
-        }
-    val allIncompletedTasksFromDB: Unit
-        get() {
-            db!!.collection("users").document(uid!!).collection("taskLog")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result) {
-                            val taskItem = document.data
-                            val taskName = taskItem["taskname"] as String?
-                            val startDate = taskItem["startDate"] as String?
-                            val finishDate = taskItem["finishDate"] as String?
-                            val complete = taskItem["completed"] as Boolean
-                            val t = Task()
-                            t.setCompleted()
-                            t.end_date = finishDate.toString()
-                            t.start_date = startDate.toString()
-                            t.taskName = taskName.toString()
-                            t.taskId = document.id
-                            Log.i("taskname", taskName.toString())
-                            if (!complete) {
-                                incompletedList.add(t)
-                                Log.i("taskname aggiunto a incompleted list", taskName.toString())
-                                Log.i("incompleted list lenght", incompletedList.size.toString())
-                            }
-                        }
-                        mylistadapter!!.setData(incompletedList)
 
                     }
                 }
@@ -366,12 +357,11 @@ class ToDoFragment : Fragment() {
     fun removeTaskFromDb(taskID: String?) {
         db!!.collection("users").document(uid!!).collection("taskLog").document(taskID!!).delete()
     }
+*/
 
     companion object {
         private const val TAG = "ToDoListActivity"
     }
 
-    internal enum class State {
-        INCOMPLETE_TASKS, COMPLETE_TASKS
-    }
+
 }

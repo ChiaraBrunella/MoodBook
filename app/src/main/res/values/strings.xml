@@ -119,6 +119,8 @@
     <string name="select_date">select date</string>
     <string name="confirm_password">confirm password</string>
     <string name="password_mismatch">Password mismatch</string>
+    <string name="start_date">Starting date:</string>
+    <string name="finish_date">Finishing date:</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

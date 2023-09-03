@@ -28,7 +28,7 @@ class NewHabitActivity : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
     private var db: FirebaseFirestore? = null
     private lateinit var binding: ActivityNewHabitBinding
-    private lateinit var constraintLayout: ConstraintLayout
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewHabitBinding.inflate(layoutInflater)
