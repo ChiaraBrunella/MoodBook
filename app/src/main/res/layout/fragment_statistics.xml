@@ -267,18 +267,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <!--Pie chart to display the data-->
 
+            <!--Creating another linear layout -->
+            <!-- to display pie chart details -->
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/piechartMood"
                 android:layout_width="200dp"
                 android:layout_height="200dp" />
 
-            <!--Creating another linear layout -->
-            <!-- to display pie chart details -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -289,8 +289,8 @@
                 >
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
                     android:layout_gravity="center_vertical">
 
                     <!--View to display the yellow color icon-->
@@ -305,20 +305,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/happy"
+                        android:textSize="12sp"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
 
                 <!--Linear layout to display neutral-->
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp">
 
                     <!--View to display the green color icon-->
                     <View
-                        android:layout_width="15dp"
+                        android:layout_width="18dp"
                         android:layout_height="match_parent"
                         android:background="@color/neutral"/>
 
@@ -335,7 +336,7 @@
                 <!--Linear layout to display  depressed-->
                 <LinearLayout
 
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="15dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp">
@@ -352,6 +353,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/depressed"
+                        android:textSize="12sp"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
@@ -359,14 +361,14 @@
                 <!--Linear layout to display  angry-->
                 <LinearLayout
 
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp">
 
                     <!--View to display the red color icon-->
                     <View
-                        android:layout_width="15dp"
+                        android:layout_width="18dp"
                         android:layout_height="match_parent"
                         android:background="@color/angry"/>
 
@@ -382,14 +384,14 @@
 
                 <!--Linear layout to display sad-->
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp">
 
                     <!--View to display the blue color icon-->
                     <View
-                        android:layout_width="15dp"
+                        android:layout_width="18dp"
                         android:layout_height="match_parent"
                         android:background="@color/sad"/>
 
@@ -406,14 +408,14 @@
                 <!--Linear layout to display  anxious-->
                 <LinearLayout
 
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp">
 
                     <!--View to display the yellow color icon-->
                     <View
-                        android:layout_width="15dp"
+                        android:layout_width="18dp"
                         android:layout_height="match_parent"
                         android:background="@color/yellow"/>
 
@@ -431,13 +433,13 @@
                 <LinearLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="15dp"
+                    android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp">
 
                     <!--View to display the green color icon-->
                     <View
-                        android:layout_width="15dp"
+                        android:layout_width="18dp"
                         android:layout_height="match_parent"
                         android:background="@color/sleepy"/>
 

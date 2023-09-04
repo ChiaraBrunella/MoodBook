@@ -8,12 +8,13 @@ class Task {
             : String
     lateinit var end_date //optional
             : String
+    var taskId: String? = null
     var completed = false
 
     var isChecked: Boolean = false
 
-        private set
-    lateinit var taskId: String
+
+
 
     constructor(name: String?, start_date: String?, end_date: String?) {
         if (name != null) {
@@ -25,9 +26,10 @@ class Task {
         if (end_date != null) {
             this.end_date = end_date
         }
+
         completed = false
-        taskIdCounter++
-        taskId = Integer.toString(taskIdCounter)
+       // taskIdCounter++
+      //  taskId = Integer.toString(taskIdCounter)
     }
 
     constructor() {}

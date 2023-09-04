@@ -37,8 +37,8 @@
 
     <Button
         android:id="@+id/btnAddTodo"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/plus_sign"
         android:backgroundTint="#FF9378C7"
         android:contentDescription="add_todo"

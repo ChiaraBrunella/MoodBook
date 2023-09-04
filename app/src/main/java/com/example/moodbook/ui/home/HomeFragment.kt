@@ -162,11 +162,11 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                                         val taskName = taskItem["taskname"] as String?
                                         val complete = taskItem["completed"] as Boolean
                                         val t = com.example.moodbook.ui.todo.Task()
-                                        t.setCompleted()
                                         t.taskName = taskName.toString()
                                         t.taskId = document.id
+                                        t.completed = complete
                                         Log.i("taskname", taskName.toString())
-                                        if (!complete) {
+                                        if (!t.completed) {
                                             tasksList.add(taskName.toString())
                                             Log.i("taskname aggiunto a incompleted list", taskName.toString())
                                             Log.i("incompleted list lenght", tasksList.size.toString())
@@ -175,12 +175,15 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                                     var taskList: MutableList<String?> = ArrayList()
                                     taskList.clear()
                                     taskList.addAll(tasksList)
+
                                     val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
                                         lvTasks.getContext(), android.R.layout.simple_list_item_1, taskList)
+                                    arrayAdapter.notifyDataSetChanged()
                                     lvTasks.setAdapter(arrayAdapter)
+
                                     lvTasks.divider = null
 
-                                    arrayAdapter.notifyDataSetChanged()
+                                   // arrayAdapter.notifyDataSetChanged()
 
 
                                 }
@@ -236,6 +239,7 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        tasksList = ArrayList<String?>()
     }
     companion object {
         private var curmoodid = 0

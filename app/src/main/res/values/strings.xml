@@ -2,8 +2,8 @@
     <string name="app_name">MoodBook</string>
 
     <!-- Login Strings -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
+    <string name="prompt_email">email</string>
+    <string name="prompt_password">password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
@@ -121,6 +121,10 @@
     <string name="password_mismatch">Password mismatch</string>
     <string name="start_date">Starting date:</string>
     <string name="finish_date">Finishing date:</string>
+    <string name="are_you_sure_you_want_to_sign_out">Are you sure you want to sign out?</string>
+    <string name="last_mood_emoji">last mood emoji</string>
+    <string name="alarm_clock">alarm clock</string>
+    <string name="target">target</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

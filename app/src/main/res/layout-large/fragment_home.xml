@@ -16,7 +16,7 @@
         android:padding="@dimen/activity_horizontal_margin"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,18 +34,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_gravity="top">
+            android:background="@color/white"
+            android:paddingBottom="80dp"
+            android:layout_gravity="bottom">
 
 
             <androidx.cardview.widget.CardView
                 style="@style/CardView.style"
-                android:id="@id/card_mood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginHorizontal="8dp">
+                android:layout_margin="18dp">
 
 
                 <TableLayout
@@ -57,28 +57,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:text="@string/last_mood"
-                        android:textSize="20sp" />
+                        android:textSize="24sp" />
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp">
 
                         <ImageView
                             android:id="@+id/emoji"
-                            android:contentDescription="@string/last_mood_emoji"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
                             android:layout_weight="3"
                             android:orientation="vertical">
 
@@ -112,18 +111,17 @@
                         android:padding="5dp"
                         android:text="@string/add_today_mood"
                         android:textColor="@color/royal_blue"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                 </TableLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_habits"
+                android:id="@+id/card_mood"
                 style="@style/CardView.style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginHorizontal="8dp">
+                android:layout_margin="16dp">
 
 
                 <TableLayout
@@ -135,23 +133,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:text="@string/today_habits"
-                        android:textSize="20sp" />
+                        android:textSize="24sp" />
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp">
 
                         <ImageView
                             android:id="@+id/habit_img"
-                            android:contentDescription="@string/alarm_clock"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
                             android:src="@drawable/alarm_clock" />
 
                         <ListView
@@ -159,6 +156,7 @@
                             android:layout_width="311dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
+                            android:layout_marginTop="4dp"
                             android:layout_marginEnd="4dp">
 
                         </ListView>
@@ -175,17 +173,17 @@
                         android:padding="5dp"
                         android:text="@string/today_add_habit"
                         android:textColor="@color/purple_700"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                 </TableLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_todos"
+                android:id="@+id/card_habits"
                 style="@style/CardView.style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp">
+                android:layout_margin="16dp">
 
 
                 <TableLayout
@@ -197,23 +195,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:text="@string/today_tasks"
-                        android:textSize="20sp" />
+                        android:textSize="24sp" />
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp">
 
                         <ImageView
                             android:id="@+id/tasks_img"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:contentDescription="@string/target"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
                             android:src="@drawable/target_red" />
 
                         <ListView
@@ -230,14 +227,14 @@
                         android:id="@+id/add_toDo"
 
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="3"
                         android:gravity="end"
                         android:padding="5dp"
                         android:text="@string/add_today_toDo"
                         android:textColor="@color/purple"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                 </TableLayout>
             </androidx.cardview.widget.CardView>

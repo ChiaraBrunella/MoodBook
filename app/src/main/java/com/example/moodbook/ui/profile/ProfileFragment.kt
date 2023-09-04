@@ -107,7 +107,7 @@ class ProfileFragment : Fragment() {
         }
         logout.setOnClickListener(View.OnClickListener {
             val b = AlertDialog.Builder(it.getContext())
-            b.setMessage("Are you sure you want to sign out?")
+            b.setMessage(getString(R.string.are_you_sure_you_want_to_sign_out))
             b.setCancelable(true)
             b.setNegativeButton("Yes") { dialog, which ->
                 dialog.cancel()

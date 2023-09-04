@@ -43,10 +43,7 @@ package com.example.moodbook.ui.todo
             todos.add(t)
             notifyDataSetChanged()
         }
-        fun deleteTodo(t: Task) {
-            todos.remove(t)
-            notifyDataSetChanged()
-        }
+
 
         private fun toggleStrikeThrough(tvTodoTitle: TextView, completed: Boolean) {
             if (completed) {

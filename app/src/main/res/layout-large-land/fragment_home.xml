@@ -16,7 +16,7 @@
         android:padding="@dimen/activity_horizontal_margin"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,7 +34,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_gravity="top">
 
@@ -71,14 +71,13 @@
 
                         <ImageView
                             android:id="@+id/emoji"
-                            android:contentDescription="@string/last_mood_emoji"
                             android:layout_width="50dp"
                             android:layout_height="50dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
                             android:layout_weight="3"
                             android:orientation="vertical">
 
@@ -149,7 +148,6 @@
 
                         <ImageView
                             android:id="@+id/habit_img"
-                            android:contentDescription="@string/alarm_clock"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:src="@drawable/alarm_clock" />
@@ -213,7 +211,6 @@
                             android:id="@+id/tasks_img"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:contentDescription="@string/target"
                             android:src="@drawable/target_red" />
 
                         <ListView

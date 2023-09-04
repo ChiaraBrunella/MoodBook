@@ -83,8 +83,8 @@ class ToDoFragment : Fragment() {
                         t.taskId = document.id
                         t.completed = complete!!
                         completedList.add(t)
-                        Log.i("taskname aggiunto a completed list", taskName.toString())
-                        Log.i("taskname  e completezza:", taskName.toString() + t.completed.toString() )
+                        Log.i("taskname aggiunto a completed list", t.taskName.toString())
+                        Log.i("taskid  e completezza:", t.taskId.toString() + t.completed.toString() )
                         todoAdapter.notifyDataSetChanged()
 
                     }
@@ -199,14 +199,15 @@ class ToDoFragment : Fragment() {
                                 )
 
                                 //add to database
-                                addTaskToDatabase(
+                               newTask.taskId =  addTaskToDatabase(
                                     taskName.text.toString(),
                                     startDate.text.toString(),
                                     finishDate.text.toString(),
-                                    newTask.taskId,
                                     false
                                 )
                                 todoAdapter.addTodo(newTask)
+                                Log.i("newtask: " + newTask.taskName, "is added to adapter")
+                                Log.i("newtaskId: " + newTask.taskId, "is added to adapter")
                             }
                         }
                         .setPositiveButtonIcon(
@@ -231,14 +232,14 @@ class ToDoFragment : Fragment() {
                         .update("completed", true)
                     Log.i("todo: " + todo.taskName, "is completed: " + todo.completed)
                     todo.setCompleted()
-                    } else {
+                    } else   if (todo.completed){
                         db!!.collection("users").document(uid!!).collection("taskLog")
                             .document(todo.taskId!!)
                             .update("completed", false)
                         Log.i("todo: " + todo.taskName, "is completed: " + todo.completed)
                       todo.completed = false
                     }
-                    todo.setUnChecked()
+
 
                     todoAdapter.notifyDataSetChanged()
                 }
@@ -248,18 +249,15 @@ class ToDoFragment : Fragment() {
                     for (todo: Task in completedList) {
 
                         if (todo.isChecked) {
+                            todo.setUnChecked()
+                            completedList.remove(todo)
                             Log.i("todo: " + todo.taskName, "is done")
+                            Log.i("taskid  e completezza:", todo.taskId.toString() + todo.completed.toString() )
                             db!!.collection("users").document(uid!!).collection("taskLog")
                                 .document(todo.taskId!!).delete()
-                            todo.setUnChecked()
-                           todoAdapter.deleteTodo(todo)
-                            todoAdapter.notifyDataSetChanged()
-
-
-                        }
-
+                            }
                     }
-
+                    todoAdapter.notifyDataSetChanged()
                 }
 
         return root
@@ -269,95 +267,24 @@ class ToDoFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-   /* internal inner class MyListAdapter : BaseAdapter() {
-        var taskList: MutableList<Task> = ArrayList()
-        fun setData(mList: List<Task>?) {
-            taskList.clear()
-            taskList.addAll(mList!!)
-
-           // Log.i("taskname in setdatalis", taskList[1].taskName.toString())
-            notifyDataSetChanged()
-        }
-
-        override fun getCount(): Int {
-            return taskList.size
-        }
-
-        override fun getItem(position: Int): Any {
-            return taskList[position]
-        }
-
-        override fun getItemId(position: Int): Long {
-            return 0
-        }
-
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
-            var taskRow = convertView
-            val inflateLayout =
-                getActivity()?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            if (taskRow == null)
-                taskRow = inflateLayout.inflate(R.layout.task, parent, false)
-            val taskObject = taskRow?.findViewById<TextView>(R.id.taskItem)
-            taskObject?.text = taskList[position].taskName
-            Log.i("taskname in row", taskList[position].taskName.toString())
-            return taskRow
-        }
-    }*/
-
-    fun addTaskToDatabase(
+    fun  addTaskToDatabase (
         taskName: String,
         startDate: String,
         finishDate: String,
-        taskId: String?,
         completed: Boolean
-    ) {
+    ) : String?{
+
         val newTaskForUser: MutableMap<String, Any> = HashMap()
         newTaskForUser["taskname"] = taskName
         newTaskForUser["startDate"] = startDate
         newTaskForUser["finishDate"] = finishDate
         newTaskForUser["completed"] = completed
-        db!!.collection("users").document(uid!!).collection("taskLog").document(taskId!!)
-            .set(newTaskForUser)
+
+        val taskId: String =   db!!.collection("users").document(uid!!).collection("taskLog").document().getId()
+        db!!.collection("users").document(uid!!).collection("taskLog").document(taskId).set(newTaskForUser)
+
+return taskId
     }
-
-   /* val allTasksFromDB: Unit
-        get() {
-            db!!.collection("users").document(uid!!).collection("taskLog")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result) {
-                            val taskItem = document.data
-                            val taskName = taskItem["taskname"] as String?
-                            val startDate = taskItem["startDate"] as String?
-                            val finishDate = taskItem["finishDate"] as String?
-                            val complete = taskItem["completed"] as Boolean
-                            val t = Task()
-                            t.end_date = finishDate.toString()
-                            t.start_date = startDate.toString()
-                            t.taskName = taskName.toString()
-                            t.taskId = document.id
-                            t.completed = complete
-                                completedList.add(t)
-                                Log.i("taskname aggiunto a completed list", taskName.toString())
-                            Log.i("taskname  e completezza:", taskName.toString() + t.completed.toString() )
-
-                        }
-
-                    }
-                }
-        }
-
-    fun updateCompleteInDb(taskID: String?) {
-        db!!.collection("users").document(uid!!).collection("taskLog").document(taskID!!)
-            .update("completed", true)
-    }
-
-    fun removeTaskFromDb(taskID: String?) {
-        db!!.collection("users").document(uid!!).collection("taskLog").document(taskID!!).delete()
-    }
-*/
 
     companion object {
         private const val TAG = "ToDoListActivity"

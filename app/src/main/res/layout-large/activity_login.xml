@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+
+    <TableLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:accessibilityHeading="false"
+        android:background="#FFFFFF"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginHorizontal="96dp"
+        android:layout_gravity="center_vertical"
+        android:paddingTop="8dp"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="8dp"
+        tools:context=".LoginActivity">
+
+        <ImageView
+            android:id="@+id/Logo"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:src="@drawable/moodbook_logo"
+            android:transitionName="logoimage" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#3F51B5"
+            android:ems="10"
+            android:textSize="20sp"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            android:textColor="#3F51B5"
+            android:textColorHighlight="#3F51B5"
+            android:textColorHint="#3F51B5"
+            android:textColorLink="#3F51B5" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#3F51B5"
+            android:hint="@string/prompt_password"
+            android:ems="10"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textColor="#3F51B5"
+            android:textColorHighlight="#3F51B5"
+            android:textColorHint="#3F51B5"
+            android:textColorLink="#3F51B5" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="60dp"
+
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="#0080ff"
+            android:text="@string/sign_in"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="@color/white"
+            android:textColorLink="@color/white"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/don_t_have_an_account"
+            android:inputType="none"
+            android:textStyle="italic"
+            android:textAllCaps="false"
+            android:textColor="#3F51B5"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            />
+
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="64dp"
+            android:visibility="gone"
+            />
+
+    </TableLayout>
+
+</ScrollView>

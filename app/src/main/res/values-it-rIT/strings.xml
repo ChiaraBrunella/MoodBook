@@ -107,8 +107,12 @@
     <string name="gender_">genere: </string>
     <string name="country_">nazione: </string>
     <string name="select_date">scegli una data</string>
-    <string name="confirm_password">confirm password</string>
-    <string name="password_mismatch">Password mismatch</string>
+    <string name="confirm_password">conferma password</string>
+    <string name="password_mismatch">le due password non coincidono</string>
     <string name="start_date">Inizio:</string>
     <string name="finish_date">Fine:</string>
+    <string name="are_you_sure_you_want_to_sign_out">Are you sure you want to sign out?</string>
+    <string name="last_mood_emoji">last mood emoji</string>
+    <string name="alarm_clock">alarm clock</string>
+    <string name="target">target</string>
 </resources>
