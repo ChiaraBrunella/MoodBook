@@ -153,7 +153,8 @@
 
                         <ListView
                             android:id="@+id/today_habit_list"
-                            android:layout_width="311dp"
+                            android:fadeScrollbars="false"
+                            android:layout_width="800dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="4dp"
@@ -215,10 +216,11 @@
 
                         <ListView
                             android:id="@+id/today_tasks_list"
-                            android:layout_width="311dp"
+                            android:layout_width="800dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:layout_marginEnd="4dp">
+                            android:layout_marginEnd="4dp"
+                            android:fadeScrollbars="false">
 
                         </ListView>
                     </TableRow>

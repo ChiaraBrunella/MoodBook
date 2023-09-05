@@ -22,6 +22,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moodbook.R
 import com.example.moodbook.databinding.FragmentTodoBinding
@@ -62,6 +63,7 @@ class ToDoFragment : Fragment() {
         var todoAdapter = TodoAdapter(completedList)
         binding.rvTodoItems.adapter = todoAdapter
         binding.rvTodoItems.layoutManager = LinearLayoutManager(context)
+        binding.rvTodoItems.addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
 
 
 
@@ -246,18 +248,21 @@ class ToDoFragment : Fragment() {
             }
         }
                 binding.btnDeleteDoneTodos.setOnClickListener {
-                    for (todo: Task in completedList) {
-
-                        if (todo.isChecked) {
+                    val iterator = completedList.iterator()
+                    while(iterator.hasNext()){
+                        val todo = iterator.next()
+                        if(todo.isChecked){
+                            iterator.remove()
                             todo.setUnChecked()
                             completedList.remove(todo)
                             Log.i("todo: " + todo.taskName, "is done")
                             Log.i("taskid  e completezza:", todo.taskId.toString() + todo.completed.toString() )
                             db!!.collection("users").document(uid!!).collection("taskLog")
                                 .document(todo.taskId!!).delete()
-                            }
+                        }
                     }
-                    todoAdapter.notifyDataSetChanged()
+
+                            todoAdapter.notifyDataSetChanged()
                 }
 
         return root

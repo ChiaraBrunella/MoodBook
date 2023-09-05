@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moodbook.R
@@ -119,6 +120,7 @@ class HabitsFragment : Fragment(), Observer, OnCompleteListener<QuerySnapshot> {
         val adapter = HabitAdapter(requireContext(), habitList)
         habitListView.adapter = adapter
         habitListView.layoutManager = LinearLayoutManager(activity)
+        habitListView.addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
         adapter.notifyDataSetChanged()
     }
     companion object {

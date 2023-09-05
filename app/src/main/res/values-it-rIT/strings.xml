@@ -47,7 +47,7 @@
     <string name="habit_tracker">Diario delle abitudini</string>
     <string name="habit_yes">Button for when habit successfully done</string>
     <string name="habit_no">Button for when habit not successfully done</string>
-    <string name="new_habit">Nuova abitudine</string>
+    <string name="new_habit">Crea una nuova abitudine</string>
     <string name="habit_name">Nome</string>
     <string name="habit_end_date">Data di fine</string>
     <string name="habit_frequency">Frequenza</string>
@@ -115,4 +115,8 @@
     <string name="last_mood_emoji">last mood emoji</string>
     <string name="alarm_clock">alarm clock</string>
     <string name="target">target</string>
+    <string name="delete">elimina</string>
+    <string name="mark_as_completed">segna come raggiunto</string>
+    <string name="your_mood_trend">osserva l\'andamento del tuo umore</string>
+    <string name="how_are_u">Come stai?</string>
 </resources>

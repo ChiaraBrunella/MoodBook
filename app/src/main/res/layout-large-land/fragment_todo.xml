@@ -6,20 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.todo.ToDoFragment">
 
-
-
     <TextView
         android:id="@+id/text_toDo"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_header_height"
+        android:layout_height="200dp"
         android:background="@drawable/sfondo_viola_azzurro"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin"
+        android:padding="24dp"
         android:text="@string/your_tasks"
-        android:textColor="@color/white"
-        android:textSize="25sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/card_tasklist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -43,42 +41,45 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTodoItems"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="300dp" />
 
     </androidx.cardview.widget.CardView>
+
 
     <Button
         android:id="@+id/btnAddTodo"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_margin="12dp"
         android:background="@drawable/plus_sign"
         android:backgroundTint="#FF9378C7"
         android:contentDescription="add_todo"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/card_tasklist"
+        app:layout_constraintBottom_toTopOf="@id/btnComplete"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/card_tasklist" />
 
     <Button
         android:id="@+id/btnComplete"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:text="Mark as completed"
         android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@id/btnAddTodo"
+        android:text="@string/mark_as_completed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnDeleteDoneTodos"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAddTodo" />
 
 
     <Button
         android:id="@+id/btnDeleteDoneTodos"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:text="Delete"
         android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@id/btnAddTodo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/delete"
+        app:layout_constraintBottom_toBottomOf="@+id/btnComplete"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnComplete"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/btnComplete" />
 </androidx.constraintlayout.widget.ConstraintLayout>

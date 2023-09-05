@@ -156,9 +156,10 @@
 
                         <ListView
                             android:id="@+id/today_habit_list"
-                            android:layout_width="311dp"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
+                            android:fadeScrollbars="false"
                             android:layout_marginEnd="4dp">
 
                         </ListView>
@@ -218,8 +219,9 @@
 
                         <ListView
                             android:id="@+id/today_tasks_list"
-                            android:layout_width="311dp"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
+                            android:fadeScrollbars="false"
                             android:layout_marginStart="8dp"
                             android:layout_marginEnd="4dp">
 

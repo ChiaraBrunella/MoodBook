@@ -110,7 +110,7 @@
     <string name="add_this_mood">Add this Mood</string>
     <string name="notes">Notes...</string>
     <string name="calendar">calendar</string>
-    <string name="habit_quote">good habits load to happiness</string>
+    <string name="habit_quote">good habits lead to happiness</string>
     <string name="add_mood">add_mood</string>
     <string name="weekly">weekly</string>
     <string name="daily">daily</string>
@@ -125,6 +125,10 @@
     <string name="last_mood_emoji">last mood emoji</string>
     <string name="alarm_clock">alarm clock</string>
     <string name="target">target</string>
+    <string name="delete">Delete</string>
+    <string name="mark_as_completed">mark as completed</string>
+    <string name="your_mood_trend">your_mood\'s_trend</string>
+    <string name="how_are_u">How are you?</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

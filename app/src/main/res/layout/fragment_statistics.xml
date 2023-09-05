@@ -295,7 +295,7 @@
 
                     <!--View to display the yellow color icon-->
                     <View
-                        android:layout_width="15dp"
+                        android:layout_width="18dp"
                         android:layout_height="match_parent"
                         android:background="@color/happy"/>
 
@@ -305,7 +305,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/happy"
-                        android:textSize="12sp"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
@@ -337,13 +336,13 @@
                 <LinearLayout
 
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp">
 
                     <!--View to display the purple color icon-->
                     <View
-                        android:layout_width="15dp"
+                        android:layout_width="18dp"
                         android:layout_height="match_parent"
                         android:background="@color/purple_700"/>
 
@@ -353,7 +352,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/depressed"
-                        android:textSize="12sp"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
