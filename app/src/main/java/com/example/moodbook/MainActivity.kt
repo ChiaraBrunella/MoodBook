@@ -8,15 +8,12 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.moodbook.databinding.ActivityMainBinding
-import com.example.moodbook.ui.habits.HabitsFragment
-import com.example.moodbook.ui.mood.MoodFragment
 import com.google.android.material.navigation.NavigationView
 
 
@@ -50,26 +47,21 @@ open class MainActivity : AppCompatActivity() {
 
         // gestione passaggio da homefragment a moodFragment e HabitFragment dopo inserimento nuova voce
 
-        var num_fragment: Int = 0
-        var user_id: String? = null
+        val num_fragment: Int
         val extras = intent.extras
         if (extras != null) {
-            val fragmentManager: FragmentManager = supportFragmentManager
+
             num_fragment = extras.getInt("num_fragment")
             Log.i("numero frammento", num_fragment.toString())
             if (num_fragment == 2) {
-                navController.navigate(R.id.nav_home_to_nav_moodtracker);
+                navController.navigate(R.id.nav_home_to_nav_moodtracker)
 
             }  else if (num_fragment == 3) {
-                navController.navigate(R.id.nav_home_to_nav_habitracker);
+                navController.navigate(R.id.nav_home_to_nav_habitracker)
             }
             else if (num_fragment == 4) {
-                navController.navigate(R.id.nav_home_to_nav_toDo);
+                navController.navigate(R.id.nav_home_to_nav_toDo)
             }
-
-            // recupero da splash activity id dell'utente loggato
-            user_id = extras.getString("loggedUser").toString()
-
 
 
         }

@@ -28,8 +28,7 @@ class Task {
         }
 
         completed = false
-       // taskIdCounter++
-      //  taskId = Integer.toString(taskIdCounter)
+
     }
 
     constructor() {}
@@ -43,7 +42,5 @@ class Task {
     fun setUnChecked() {
         isChecked = false
     }
-    companion object {
-        private var taskIdCounter = 0
-    }
+
 }

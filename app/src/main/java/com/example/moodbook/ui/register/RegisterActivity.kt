@@ -19,8 +19,6 @@ import com.example.moodbook.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.FirebaseDatabase.*
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
@@ -148,7 +146,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         val i = v.id
         if (i == R.id.register) {
-            createAccount(usernameEditText!!.text.toString(), passwordEditText!!.text.toString())
+            createAccount(usernameEditText.text.toString(), passwordEditText.text.toString())
         }
     }
 
@@ -158,7 +156,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         user["DOB"] = dob
         user["Country"] = country
         user["Gender"] = gender
-        db!!.collection("users").document(UID!!).set(user)
+        db.collection("users").document(UID!!).set(user)
             .addOnSuccessListener(this) { Log.w("SUCCESS", "DocumentSnapshot added with ID:") }
             .addOnFailureListener(this) { e ->
                 Log.w(
@@ -177,8 +175,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 if (task.isSuccessful) {
                     val user = mAuth!!.currentUser
                     addUserData(
-                        user!!.uid, nameEditText!!.text.toString(), DOBEditText!!.text.toString(),
-                        countryEditText!!.text.toString(), gender!!.selectedItem.toString()
+                        user!!.uid, nameEditText.text.toString(), DOBEditText.text.toString(),
+                        countryEditText.text.toString(), gender.selectedItem.toString()
                     )
                     updateUIWithUser(user)
                 } else {
@@ -193,15 +191,13 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(this@RegisterActivity, "Registration Failed", Toast.LENGTH_SHORT).show()
             return
         }
-        val uid = user!!.uid
-        db!!.collection("users").document(uid).get().addOnCompleteListener { task ->
+        val uid = user.uid
+        db.collection("users").document(uid).get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val docsnap = task.result
                 val name = docsnap.getString("Name")
                 Log.i("docsnap", name.toString())
-                val country = docsnap.getString("Country")
-                val dob = docsnap.getString("DOB")
-                val gender = docsnap.getString("Gender")
+
 
                 val welcome = "Welcome " + name + "!"
                 Toast.makeText(applicationContext, welcome, Toast.LENGTH_LONG).show()

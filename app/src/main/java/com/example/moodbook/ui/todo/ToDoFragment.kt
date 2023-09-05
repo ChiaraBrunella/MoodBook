@@ -14,7 +14,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moodbook.R
@@ -29,7 +28,7 @@ class ToDoFragment : Fragment() {
 
 
     private var _binding: FragmentTodoBinding?  = null
-    private lateinit var todoAdapter: TodoAdapter
+
 
 
     private var db: FirebaseFirestore? = null
@@ -52,7 +51,7 @@ class ToDoFragment : Fragment() {
 
         _binding = FragmentTodoBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        var todoAdapter = TodoAdapter(completedList)
+        val todoAdapter = TodoAdapter(completedList)
         binding.rvTodoItems.adapter = todoAdapter
         binding.rvTodoItems.layoutManager = LinearLayoutManager(context)
         binding.rvTodoItems.addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
@@ -71,13 +70,13 @@ class ToDoFragment : Fragment() {
                         val finishDate = taskItem["finishDate"] as String?
                         val complete = taskItem["completed"] as Boolean?
                         val t = Task()
+                        t.taskName = taskName.toString()
                         t.end_date = finishDate.toString()
                         t.start_date = startDate.toString()
-                        t.taskName = taskName.toString()
                         t.taskId = document.id
                         t.completed = complete!!
                         completedList.add(t)
-                        Log.i("taskname aggiunto a completed list", t.taskName.toString())
+                        Log.i("taskname aggiunto a completed list", t.taskName)
                         Log.i("taskid  e completezza:", t.taskId.toString() + t.completed.toString() )
                         todoAdapter.notifyDataSetChanged()
 
@@ -89,7 +88,7 @@ class ToDoFragment : Fragment() {
 
 
 
-                binding.btnAddTodo.setOnClickListener(View.OnClickListener {
+                binding.btnAddTodo.setOnClickListener {
 
                     val addTaskDialogView =
                         layoutInflater.inflate(R.layout.add_new_task_dialog, null)
@@ -180,7 +179,7 @@ class ToDoFragment : Fragment() {
 
                     todoAdapter.notifyDataSetChanged()
 
-                })
+                }
 
                 binding.btnComplete.setOnClickListener {
                     val iterator = completedList.iterator()
@@ -237,7 +236,7 @@ class ToDoFragment : Fragment() {
         startDate: String,
         finishDate: String,
         completed: Boolean
-    ) : String?{
+    ) : String{
 
         val newTaskForUser: MutableMap<String, Any> = HashMap()
         newTaskForUser["taskname"] = taskName
@@ -249,10 +248,6 @@ class ToDoFragment : Fragment() {
         db!!.collection("users").document(uid!!).collection("taskLog").document(taskId).set(newTaskForUser)
 
 return taskId
-    }
-
-    companion object {
-        private const val TAG = "ToDoListActivity"
     }
 
 

@@ -2,17 +2,13 @@ package com.example.moodbook.ui.habits
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.FrameLayout
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.moodbook.MainActivity
 import com.example.moodbook.R
-import com.example.moodbook.databinding.ActivityMainBinding
 import com.example.moodbook.databinding.ActivityNewHabitBinding
 import com.example.moodbook.ui.mood.DatePickerFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -48,27 +44,27 @@ class NewHabitActivity : AppCompatActivity() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         trackingFrequency.setAdapter(adapter)
-        habitEndDate.setOnClickListener(View.OnClickListener {
+        habitEndDate.setOnClickListener{
             val newFragment = DatePickerFragment(habitEndDate)
             newFragment.show(supportFragmentManager, "datePicker")
-        })
-        newHabit.setOnClickListener(View.OnClickListener {
+        }
+        newHabit.setOnClickListener {
             addHabit()
             val i = Intent(applicationContext, MainActivity::class.java)
-            i.putExtra("num_fragment", 3);
+            i.putExtra("num_fragment", 3)
             startActivity(i)
 
-        })
+        }
     }
 
     private fun addHabit() {
         val habit: MutableMap<String, String> = HashMap()
-        habit["Habit Name"] = habitName!!.text.toString()
+        habit["Habit Name"] = habitName.text.toString()
         val sdf = SimpleDateFormat("dd/MM/yyyy")
         val start = sdf.format(Calendar.getInstance().time)
         habit["Start Date"] = start
-        habit["End Date"] = habitEndDate!!.text.toString()
-        habit["Frequency"] = trackingFrequency!!.selectedItem.toString()
+        habit["End Date"] = habitEndDate.text.toString()
+        habit["Frequency"] = trackingFrequency.selectedItem.toString()
         habit["Progress"] = "0"
         db!!.collection("users").document(mAuth!!.currentUser!!.uid).collection("habits").document()
             .set(habit)

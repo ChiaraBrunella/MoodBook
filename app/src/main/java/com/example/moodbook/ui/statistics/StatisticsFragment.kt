@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.Typeface
-import android.graphics.Typeface.*
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -14,12 +13,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.moodbook.R
 import com.example.moodbook.databinding.FragmentStatisticsBinding
 import com.github.mikephil.charting.animation.Easing
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -57,11 +53,6 @@ class StatisticsFragment : Fragment() {
     private var neutralCount: Int = 0
     private var sleepyCount: Int = 0
 
-
-    // variable for our bar data.
-    private lateinit var barData: BarData
-
-    // variable for our bar data set.? = null
 
     // array list for storing entries.
 
@@ -103,11 +94,7 @@ class StatisticsFragment : Fragment() {
                             Log.d("", "Current data: null")
                         }
                     }
-                    if (moodid.size != 0) {
-                        curmoodid = moodid[0]
-                    } else {
-                        curmoodid = 0
-                    }
+
                     for (emo in mood) {
                         if (emo != null) {
                             Log.i("emo", emo)
@@ -150,43 +137,7 @@ class StatisticsFragment : Fragment() {
                             colors.add(resources.getColor(R.color.depressed))
                             colors.add(resources.getColor(R.color.neutral))
                             colors.add(resources.getColor(R.color.sleepy))
-                            /* bar chart
-                            // initializing variable for bar chart.
-                            barChart = binding.barChart;
 
-                            // creating a new array list
-                            barEntriesArrayList = ArrayList <BarEntry>();
-
-                            // adding new entry to our array list with bar
-                            // entry and passing x and y axis value to it.
-                            barEntriesArrayList.add( BarEntry(1f, happyPercent))
-                            barEntriesArrayList.add(BarEntry(2f, sadPercent))
-                            barEntriesArrayList.add(BarEntry(3f, flushedPercent))
-                            barEntriesArrayList.add( BarEntry(4f, angryPercent))
-                            barEntriesArrayList.add(BarEntry(5f, depressedPercent))
-                            barEntriesArrayList.add(BarEntry(6f, neutralPercent))
-                            barEntriesArrayList.add(BarEntry(6f, sleepyPercent))
-
-                            // creating a new bar data set.
-                            barDataSet =  BarDataSet(barEntriesArrayList, "moods");
-
-                            // creating a new bar data and
-                            // passing our bar data set.
-                            barData = BarData(barDataSet);
-
-                            // below line is to set data
-                            // to our bar chart.
-                            barChart.setData(barData);
-
-                            // adding color to our bar data set.
-                            barDataSet.setColors(colors);
-
-                            // setting text color.
-                            barDataSet!!.setValueTextColor(Color.BLACK);
-
-                            // setting text size
-                            barDataSet.setValueTextSize(16f);
-                            barChart.getDescription().setEnabled(false);*/
 
                             binding.progbarHappy.max = 100
 
@@ -299,11 +250,6 @@ class StatisticsFragment : Fragment() {
         _binding = null
     }
 
-                        companion object {
-                    private var curmoodid = 0
-                    fun getmoodid(): Int {
-                        return curmoodid
-                    }
-                }
+
 
 }

@@ -6,12 +6,10 @@ package com.example.moodbook.ui.todo
     import android.view.View
     import android.view.ViewGroup
     import android.widget.CheckBox
-    import android.widget.CompoundButton
-    import android.widget.EditText
     import android.widget.TextView
     import androidx.recyclerview.widget.RecyclerView
     import com.example.moodbook.R
-    import javax.security.auth.callback.Callback
+
 
 
 

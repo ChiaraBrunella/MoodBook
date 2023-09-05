@@ -102,26 +102,13 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this@LoginActivity, "Login Failed", Toast.LENGTH_SHORT).show()
             return
         }
-        val uid = user!!.uid
-        db!!.collection("users").document(uid).get().addOnCompleteListener { task ->
+        val uid = user.uid
+        db.collection("users").document(uid).get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val docsnap = task.result
                 val name = docsnap.getString("Name")
                 Log.i("docsnap", name.toString())
-                val country = docsnap.getString("Country")
-                val dob = docsnap.getString("DOB")
-                val gender = docsnap.getString("Gender")
 
-                /*
-                // memorizzo user-id in shared preferences per non richiedere ulteriormente il login
-                val sharedPref =
-                    this.getSharedPreferences("com.example.moodbook", Context.MODE_PRIVATE)
-                val prefEditor = sharedPref?.edit()
-                prefEditor?.putString("loggedUser", uid)
-                prefEditor?.apply()
-                Log.i("in Login: loggedUser", uid)
-
-                */
                 val welcome = "Welcome " + user.email + "!"
                 Toast.makeText(applicationContext, welcome, Toast.LENGTH_LONG).show()
                 val i = Intent(applicationContext, MainActivity::class.java)

@@ -1,7 +1,6 @@
 package com.example.moodbook
 
 import android.util.Patterns
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.text.ParseException
@@ -9,9 +8,7 @@ import java.text.SimpleDateFormat
 
 class RegisterViewModel internal constructor() : ViewModel() {
     val registerFormState = MutableLiveData<RegisterFormState?>()
-    fun getRegisterFormState(): LiveData<RegisterFormState?> {
-        return registerFormState
-    }
+
 
     fun registerDataChanged(
         username: String?, password: String?, conf_passw: String?, name: String?,

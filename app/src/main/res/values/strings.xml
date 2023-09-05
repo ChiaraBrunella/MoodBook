@@ -133,6 +133,7 @@
     <string name="new_name">New Name</string>
     <string name="new_date_of_birth">New Date of Birth</string>
     <string name="new_country">New Country</string>
+    <string name="non_hai_ancora_inserito_alcuna_emozione">Non hai ancora inserito alcuna emozione</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

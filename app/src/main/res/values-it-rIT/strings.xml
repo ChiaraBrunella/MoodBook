@@ -123,4 +123,5 @@
     <string name="new_name">nome</string>
     <string name="new_date_of_birth">data di nascita</string>
     <string name="new_country">nazione</string>
+    <string name="non_hai_ancora_inserito_alcuna_emozione">Non hai ancora inserito alcuna emozione</string>
 </resources>

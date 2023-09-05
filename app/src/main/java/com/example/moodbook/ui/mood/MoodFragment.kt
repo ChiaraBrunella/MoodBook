@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.moodbook.R
 import com.example.moodbook.databinding.FragmentMoodtrackerBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -50,10 +49,10 @@ class MoodFragment : Fragment() {
         }*/
         //make sure to step up for current user
         val user = FirebaseAuth.getInstance().uid
-        binding.addmood.setOnClickListener(View.OnClickListener {
+        binding.addmood.setOnClickListener {
             val i = Intent(getActivity(), AddMoodActivity::class.java)
             startActivity(i)
-        })
+        }
         db.collection("users").document(user!!).collection("moodlog")
             .orderBy("date", Query.Direction.DESCENDING).addSnapshotListener(
                 EventListener { docsnapshot, e ->
@@ -64,7 +63,7 @@ class MoodFragment : Fragment() {
                             return@EventListener
                         }
                         if (snapshot != null && snapshot.exists()) {
-                            var mooddate = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(snapshot.getDate("date"))
+                            val mooddate = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(snapshot.getDate("date")!!)
                             date.add(mooddate)
                             desc.add(snapshot.getString("description"))
                             mood.add(snapshot.getString("moodtype"))
@@ -80,7 +79,7 @@ class MoodFragment : Fragment() {
                         curmoodid = 0
                     }
                     val adapcontext = container!!.context
-                    val adapter: Adapter = Adapter(
+                    val adapter = Adapter(
                        adapcontext,date, desc, mood
                     )
                     adapter.notifyDataSetChanged()

@@ -9,14 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import com.example.moodbook.R
 import com.example.moodbook.databinding.FragmentHomeBinding
 import com.example.moodbook.ui.habits.NewHabitActivity
 import com.example.moodbook.ui.mood.AddMoodActivity
-import com.example.moodbook.ui.todo.ToDoFragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -53,24 +50,19 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-       /* val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }*/
         //make sure to step up for current user
             val user = FirebaseAuth.getInstance().uid
 
         // collect user data
-
-           db!!.collection("users").document(user!!).get().addOnCompleteListener { task ->
+           db.collection("users").document(user!!).get().addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val docsnap = task.result
                     val name = docsnap.getString("Name")
-                    binding.textHome?.text= "Ciao, " + name
+                    binding.textHome?.text= "Ciao, $name"
                 }
             }
 
-        db.collection("users").document(user!!).collection("moodlog")
+        db.collection("users").document(user).collection("moodlog")
             .orderBy("date", Query.Direction.DESCENDING).addSnapshotListener(
                 EventListener { docsnapshot, e ->
 
@@ -80,7 +72,7 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                             return@EventListener
                         }
                         if (snapshot != null && snapshot.exists()) {
-                            var mooddate = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(snapshot.getDate("date"))
+                            val mooddate = SimpleDateFormat("dd/MM/yyyy", Locale.US).format(snapshot.getDate("date")!!)
                             date.add(mooddate)
                             desc.add(snapshot.getString("description"))
                             mood.add(snapshot.getString("moodtype"))
@@ -91,9 +83,9 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                         }
                     }
                     if (moodid.size != 0) {
-                        HomeFragment.curmoodid = moodid[0]
+                        curmoodid = moodid[0]
                     } else {
-                        HomeFragment.curmoodid = 0
+                        curmoodid = 0
                     }
 
                     // set mood cardview data
@@ -103,7 +95,7 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                     if (!date.isEmpty()) {
                         vdate.text = date[0]
                     } else
-                        vdate.text = "Non hai ancora inserito alcuna emozione"
+                        vdate.text = getString(R.string.non_hai_ancora_inserito_alcuna_emozione)
                     if (!desc.isEmpty()) {
                         vdesc.text = desc[0]
                     }
@@ -120,7 +112,7 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                         }
 
                         if (mood[0].equals("happy", ignoreCase = true)) {
-                            vmood.setImageResource(com.example.moodbook.R.drawable.happy)
+                            vmood.setImageResource(R.drawable.happy)
                         }
 
                         if (mood[0].equals("angry", ignoreCase = true)) {
@@ -142,8 +134,8 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                         vmood.setImageResource(R.drawable.hands_up)
                     }
                     // set habits cardview data
-                    val lvHabits = binding.todayHabitList
-                    db!!.collection("users").document(mAuth!!.currentUser!!.uid).collection("habits").get()
+
+                    db.collection("users").document(mAuth.currentUser!!.uid).collection("habits").get()
                         .addOnCompleteListener(this)
 
 
@@ -151,7 +143,7 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
 
                     // set tasks cardview data
                     val lvTasks = binding.todayTasksList
-                    db!!.collection("users").document(mAuth!!.currentUser!!.uid).collection("taskLog")
+                    db.collection("users").document(mAuth.currentUser!!.uid).collection("taskLog")
                             .get()
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
@@ -170,7 +162,7 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
                                             Log.i("incompleted list lenght", tasksList.size.toString())
                                         }
                                     }
-                                    var taskList: MutableList<String?> = ArrayList()
+                                    val taskList: MutableList<String?> = ArrayList()
                                     taskList.clear()
                                     taskList.addAll(tasksList)
 
@@ -192,22 +184,18 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
 
                 })
 
-        binding.addMood.setOnClickListener(View.OnClickListener {
+        binding.addMood.setOnClickListener {
             val i = Intent(getActivity(), AddMoodActivity::class.java)
             startActivity(i)
-        })
+        }
 
-        binding.addHabit.setOnClickListener(View.OnClickListener {
+        binding.addHabit.setOnClickListener{
             val i = Intent(context, NewHabitActivity::class.java)
             startActivity(i)
-        })
+        }
 
-        binding.addToDo.setOnClickListener(View.OnClickListener {
-
-            /*val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
-            ft.replace(R.id.mobile_navigation, ToDoFragment(), "NewFragmentTag")
-            ft.commit()*/
-            findNavController(this).navigate(R.id.nav_home_to_nav_toDo);})
+        binding.addToDo.setOnClickListener {
+            findNavController(this).navigate(R.id.nav_home_to_nav_toDo);}
         return root
     }
 
@@ -241,9 +229,7 @@ class HomeFragment : Fragment(), OnCompleteListener<QuerySnapshot> {
     }
     companion object {
         private var curmoodid = 0
-        fun getmoodid(): Int {
-            return curmoodid
-        }
+
     }
 
 }
