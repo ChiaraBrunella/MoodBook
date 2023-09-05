@@ -129,6 +129,10 @@
     <string name="mark_as_completed">mark as completed</string>
     <string name="your_mood_trend">your_mood\'s_trend</string>
     <string name="how_are_u">How are you?</string>
+    <string name="note_if_you_leave_any_field_blank_it_will_not_be_changed">*Note: If you leave any field blank, it will not be changed.</string>
+    <string name="new_name">New Name</string>
+    <string name="new_date_of_birth">New Date of Birth</string>
+    <string name="new_country">New Country</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

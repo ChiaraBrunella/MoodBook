@@ -1,7 +1,6 @@
 package com.example.moodbook.ui.todo
 
 import android.app.DatePickerDialog
-import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -9,17 +8,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.BaseAdapter
-import android.widget.Button
 import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -29,7 +22,7 @@ import com.example.moodbook.databinding.FragmentTodoBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Calendar
-import java.util.Objects
+
 
 class ToDoFragment : Fragment() {
 
@@ -55,8 +48,7 @@ class ToDoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val toDoViewModel =
-            ViewModelProvider(this).get(ToDoViewModel::class.java)
+
 
         _binding = FragmentTodoBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -97,41 +89,6 @@ class ToDoFragment : Fragment() {
 
 
 
-
-  todoAdapter.setOnItemClickListener(object: TodoAdapter.OnItemClickListener{
-      override fun onItemClick(position: Int) {
-
-      }
-  })
-
-
-            /*val infoTaskDialogView = layoutInflater.inflate(R.layout.info_task_dialog, null)
-            val taskLabel = infoTaskDialogView.findViewById<TextView>(R.id.taskLabel)
-            val startDateLabel = infoTaskDialogView.findViewById<TextView>(R.id.startDateLabel)
-            val endDateLabel = infoTaskDialogView.findViewById<TextView>(R.id.endDateLabel)
-
-                val task = completedList[position]
-              taskLabel.text = task.taskName
-                startDateLabel.text = task.start_date
-                endDateLabel.text = task.end_date
-                val infoDialog = AlertDialog.Builder(requireActivity())
-                    .setView(infoTaskDialogView)
-                    .setPositiveButton("Mark As Completed") { dialog, which -> //mark task as completed
-                        updateCompleteInDb(task.taskId)
-                        task.completed = true
-                        completedList.add(task)
-
-                        todoAdapter!!.setData(completedList)
-                    }
-                    .setNegativeButton("Cancel Task") { dialog, which ->
-                        removeTaskFromDb(task.taskId)
-                        completedList.remove(task)
-                        todoAdapter!!.setData(completedList)
-                    }
-                    .create()
-                infoDialog.show()
-
-        })*/
                 binding.btnAddTodo.setOnClickListener(View.OnClickListener {
 
                     val addTaskDialogView =
@@ -226,15 +183,18 @@ class ToDoFragment : Fragment() {
                 })
 
                 binding.btnComplete.setOnClickListener {
-            for (todo: Task in completedList) {
-                if (todo.isChecked) {
-                    if (!todo.completed){
+                    val iterator = completedList.iterator()
+                    while(iterator.hasNext()) {
+                        val todo = iterator.next()
+                        if (todo.isChecked) {
+                             if (!todo.completed){
                     db!!.collection("users").document(uid!!).collection("taskLog")
                         .document(todo.taskId!!)
                         .update("completed", true)
                     Log.i("todo: " + todo.taskName, "is completed: " + todo.completed)
                     todo.setCompleted()
-                    } else   if (todo.completed){
+                    }
+                             else{
                         db!!.collection("users").document(uid!!).collection("taskLog")
                             .document(todo.taskId!!)
                             .update("completed", false)

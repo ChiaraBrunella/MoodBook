@@ -20,7 +20,7 @@
         android:id="@+id/textView7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="*Note: If you leave any field blank, it will not be changed."
+        android:text="@string/note_if_you_leave_any_field_blank_it_will_not_be_changed"
         android:textColor="#000000"
         android:layout_marginLeft="5dp"/>
 
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:hint="New Name"
+        android:hint="@string/new_name"
         android:inputType="text"></EditText>
 
     <EditText
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:hint="New Date of Birth"
+        android:hint="@string/new_date_of_birth"
         android:inputType="date"></EditText>
 
     <EditText
@@ -45,6 +45,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:hint="New Country"></EditText>
+        android:hint="@string/new_country"></EditText>
 
 </LinearLayout>

@@ -39,8 +39,7 @@ class MoodFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val moodViewModel =
-            ViewModelProvider(this).get(MoodViewModel::class.java)
+
 
         _binding = FragmentMoodtrackerBinding.inflate(inflater, container, false)
         val root: View = binding.root

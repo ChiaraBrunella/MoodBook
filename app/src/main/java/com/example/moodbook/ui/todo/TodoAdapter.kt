@@ -19,25 +19,15 @@ package com.example.moodbook.ui.todo
         private val todos: MutableList<Task>) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
 
-        private lateinit var mlistener: OnItemClickListener
-
-        interface OnItemClickListener {
-            fun onItemClick(position: Int)
-        }
-
-
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
 
             val itemView = LayoutInflater.from(parent.context).inflate(
                 R.layout.item_todo, parent,
                 false
             )
-            return TodoViewHolder(itemView, mlistener)
+            return TodoViewHolder(itemView)
         }
 
-        fun setOnItemClickListener(listener: OnItemClickListener) {
-            mlistener = listener
-        }
 
         fun addTodo(t: Task) {
             todos.add(t)
@@ -69,11 +59,22 @@ package com.example.moodbook.ui.todo
                 toggleStrikeThrough(tvTodoTitle, curTodo.completed)
 
                 Log.i("curtodo: " + curTodo.taskName, "is barrato: " + curTodo.completed)
-                cbDone.setOnCheckedChangeListener { _, isChecked ->
+               /* cbDone.setOnCheckedChangeListener { _, isChecked ->
                     curTodo.setChecked()
                     Log.i("curtodo: " + curTodo.taskName, "is checked: " + curTodo.isChecked)
 
 
+                }*/
+                cbDone.setOnCheckedChangeListener{buttonView, isChecked ->
+                    if (isChecked) {
+                        curTodo.setChecked()
+                        Log.i("curtodo: " + curTodo.taskName, "is checked: " + curTodo.isChecked)
+                    }
+                    else
+                    {
+                        curTodo.setUnChecked()
+                        Log.i("curtodo: " + curTodo.taskName, "is checked: " + curTodo.isChecked)
+                    }
                 }
             }
         }
@@ -82,17 +83,14 @@ package com.example.moodbook.ui.todo
             return todos.size
         }
 
-        class TodoViewHolder(itemView: View, listener: OnItemClickListener) :
+        class TodoViewHolder(itemView: View) :
             RecyclerView.ViewHolder(itemView) {
 
 
 
-            init {
-                itemView.setOnClickListener {
-                    listener.onItemClick(adapterPosition)
-                }
+
 
             }
         }
-    }
+
 

@@ -111,7 +111,7 @@
     <string name="password_mismatch">le due password non coincidono</string>
     <string name="start_date">Inizio:</string>
     <string name="finish_date">Fine:</string>
-    <string name="are_you_sure_you_want_to_sign_out">Are you sure you want to sign out?</string>
+    <string name="are_you_sure_you_want_to_sign_out">Sei sicuro di voler uscire?</string>
     <string name="last_mood_emoji">last mood emoji</string>
     <string name="alarm_clock">alarm clock</string>
     <string name="target">target</string>
@@ -119,4 +119,8 @@
     <string name="mark_as_completed">segna come raggiunto</string>
     <string name="your_mood_trend">osserva l\'andamento del tuo umore</string>
     <string name="how_are_u">Come stai?</string>
+    <string name="note_if_you_leave_any_field_blank_it_will_not_be_changed">*Nota: i campi lasciati vuoti non verranno modificati</string>
+    <string name="new_name">nome</string>
+    <string name="new_date_of_birth">data di nascita</string>
+    <string name="new_country">nazione</string>
 </resources>

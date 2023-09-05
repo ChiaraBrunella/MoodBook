@@ -74,8 +74,7 @@ class StatisticsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val statViewModel =
-            ViewModelProvider(this).get(StatisticsViewModel::class.java)
+
 
         _binding = FragmentStatisticsBinding.inflate(inflater, container, false)
         val root: View = binding.root
